@@ -26,7 +26,11 @@ jobs:
           cache: 'npm'
       
       - name: Install Supabase CLI
-        run: npm install -g @supabase/cli
+        run: |
+          curl -L https://github.com/supabase/cli/releases/download/v2.98.1/supabase_linux_amd64.tar.gz -o supabase.tar.gz
+          tar -xzf supabase.tar.gz
+          sudo mv supabase /usr/local/bin/
+          supabase --version
       
       - name: Login to Supabase
         run: |

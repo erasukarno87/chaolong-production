@@ -1,5 +1,6 @@
 // Generate 2FA setup with QR code and backup codes
 // Called when user initiates 2FA setup
+// Deploy version: 1.0 - Ready for production
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.45.0";
 import { encodeBase32 } from "https://deno.land/x/base32@v0.2.1/mod.ts";
 
