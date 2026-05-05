@@ -10,7 +10,6 @@ Write-Host ""
 
 # Configuration
 $ProjectId = "rkedhwwukehxdpofbxki"
-$SupabaseUrl = "https://rkedhwwukehxdpofbxki.supabase.co"
 $GitHubRepo = "https://github.com/erasukarno87/chaolong-production"
 $WorkDir = "C:\prod-system-chaolong"
 
@@ -23,7 +22,7 @@ function Show-Banner {
     Write-Host ""
 }
 
-function Check-Command {
+function Test-Command {
     param([string]$Command, [string]$Package)
     
     try {
@@ -44,10 +43,10 @@ Show-Banner "STEP 1: Checking Prerequisites" "Cyan"
 
 Write-Host "Checking required tools..." -ForegroundColor White
 
-$npmOk = Check-Command "npm" "@supabase/cli"
-$nodeOk = Check-Command "node" "node.js"
-$gitOk = Check-Command "git" "git"
-$supabaseOk = Check-Command "supabase" "@supabase/cli"
+$npmOk = Test-Command "npm" "@supabase/cli"
+$nodeOk = Test-Command "node" "node.js"
+$gitOk = Test-Command "git" "git"
+$supabaseOk = Test-Command "supabase" "@supabase/cli"
 
 Write-Host ""
 if (-not $npmOk -or -not $nodeOk -or -not $gitOk) {
@@ -69,7 +68,7 @@ Show-Banner "STEP 2: Verifying Production Build" "Cyan"
 
 Set-Location $WorkDir
 Write-Host "Running npm run build..." -ForegroundColor White
-$buildOutput = npm run build 2>&1
+npm run build 2>&1 | Out-Null
 
 if ($LASTEXITCODE -eq 0) {
     Write-Host "✓ Build successful" -ForegroundColor Green
@@ -104,7 +103,7 @@ Write-Host "✓ Branch: $currentBranch" -ForegroundColor Green
 Show-Banner "STEP 4: Supabase Authentication" "Cyan"
 
 Write-Host "Testing Supabase CLI..." -ForegroundColor White
-$supabaseAuth = supabase projects list 2>&1
+supabase projects list 2>&1 | Out-Null
 
 if ($LASTEXITCODE -ne 0) {
     Write-Host "⚠ Supabase CLI not authenticated" -ForegroundColor Yellow
