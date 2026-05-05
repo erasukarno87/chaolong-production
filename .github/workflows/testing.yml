@@ -1,0 +1,107 @@
+name: Load Testing
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 2 * * 0'  # Weekly on Sunday at 2 AM UTC
+
+jobs:
+  load-test:
+    runs-on: ubuntu-latest
+    name: Performance Load Testing
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Install k6 (load testing tool)
+        run: |
+          sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C5AD17C747E3415A3642D57D77C6C491D6AC1D69
+          echo "deb https://dl.k6.io/deb stable main" | sudo tee /etc/apt/sources.list.d/k6-stable.list
+          sudo apt-get update
+          sudo apt-get install k6
+      
+      - name: Run load test - Authentication
+        run: |
+          k6 run tests/load/auth-load-test.js \
+            --vus 100 \
+            --duration 30s \
+            --rps 50
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+      
+      - name: Run load test - Production Setup
+        run: |
+          k6 run tests/load/production-setup-load-test.js \
+            --vus 50 \
+            --duration 30s \
+            --rps 25
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+      
+      - name: Run load test - 2FA Verification
+        run: |
+          k6 run tests/load/2fa-load-test.js \
+            --vus 25 \
+            --duration 30s \
+            --rps 10
+        env:
+          API_BASE_URL: ${{ secrets.API_BASE_URL }}
+      
+      - name: Upload results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: load-test-results
+          path: test-results/
+      
+      - name: Send results summary
+        uses: 8398a7/action-slack@v3
+        if: always()
+        with:
+          status: ${{ job.status }}
+          text: 'Load testing completed'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+
+  lighthouse-audit:
+    runs-on: ubuntu-latest
+    name: Lighthouse Performance Audit
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Run Lighthouse audit
+        uses: actions/checkout@v4
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build application
+        run: npm run build
+      
+      - name: Start preview server
+        run: |
+          npm run preview &
+          sleep 5
+      
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v9
+        with:
+          configPath: './lighthouse-config.json'
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+      
+      - name: Upload audit results
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: lighthouse-results
+          path: .lighthouseci/

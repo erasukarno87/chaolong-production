@@ -1,0 +1,90 @@
+name: Deploy 2FA Edge Functions
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'supabase/functions/generate-2fa-setup/**'
+      - 'supabase/functions/verify-2fa-setup/**'
+      - 'supabase/functions/verify-2fa-code/**'
+
+env:
+  SUPABASE_PROJECT_ID: rkedhwwukehxdpofbxki
+
+jobs:
+  deploy-functions:
+    runs-on: ubuntu-latest
+    name: Deploy 2FA Edge Functions
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install Supabase CLI
+        run: npm install -g @supabase/cli
+      
+      - name: Login to Supabase
+        run: |
+          supabase link --project-ref ${{ env.SUPABASE_PROJECT_ID }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      
+      - name: Deploy generate-2fa-setup function
+        run: |
+          supabase functions deploy generate-2fa-setup --project-ref ${{ env.SUPABASE_PROJECT_ID }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      
+      - name: Deploy verify-2fa-setup function
+        run: |
+          supabase functions deploy verify-2fa-setup --project-ref ${{ env.SUPABASE_PROJECT_ID }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      
+      - name: Deploy verify-2fa-code function
+        run: |
+          supabase functions deploy verify-2fa-code --project-ref ${{ env.SUPABASE_PROJECT_ID }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      
+      - name: Verify deployment
+        run: |
+          supabase functions list --project-ref ${{ env.SUPABASE_PROJECT_ID }}
+        env:
+          SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}
+      
+      - name: Send deployment notification
+        uses: 8398a7/action-slack@v3
+        if: always()
+        with:
+          status: ${{ job.status }}
+          text: '2FA Edge Functions deployment ${{ job.status }}'
+          webhook_url: ${{ secrets.SLACK_WEBHOOK }}
+          fields: repo,message,commit,author
+
+  test-functions:
+    runs-on: ubuntu-latest
+    name: Test 2FA Functions
+    needs: deploy-functions
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Test 2FA functions
+        run: |
+          echo "Testing 2FA functions..."
+          # Add your function test commands here
+          # curl -X POST https://[project].supabase.co/functions/v1/generate-2fa-setup ...
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
