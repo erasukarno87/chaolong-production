@@ -1,0 +1,879 @@
+/**
+ * Responsive Design Improvements untuk Production Setup
+ * Mobile-first approach dengan progressive enhancement
+ */
+
+/* Base responsive variables */
+:root {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  
+  --mobile-max: 639px;
+  --tablet-min: 640px;
+  --tablet-max: 1023px;
+  --desktop-min: 1024px;
+  --desktop-max: 1279px;
+  --large-desktop-min: 1280px;
+}
+
+/* Mobile-first base styles */
+.production-setup-container {
+  width: 100%;
+  min-height: 100vh;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+/* Mobile styles (default) */
+@media (max-width: 639px) {
+  .production-setup-container {
+    padding: 0.75rem;
+  }
+  
+  /* Status Dashboard Mobile */
+  .status-dashboard .status-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+  
+  .status-card {
+    padding: 1rem;
+    min-height: 80px;
+  }
+  
+  .status-card .card-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.5rem;
+  }
+  
+  .status-card .card-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .status-card .card-value {
+    font-size: 1.5rem;
+  }
+  
+  .status-card .card-label {
+    font-size: 0.75rem;
+  }
+  
+  /* Workstation Cards Mobile */
+  .workstation-card {
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+  }
+  
+  .workstation-card .card-header {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .workstation-card .workstation-info {
+    text-align: center;
+  }
+  
+  .workstation-card .workstation-icon {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.25rem;
+  }
+  
+  .workstation-card .operator-row {
+    padding: 0.75rem;
+    gap: 0.5rem;
+  }
+  
+  .workstation-card .operator-avatar {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.75rem;
+  }
+  
+  .workstation-card .quick-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .workstation-card .quick-stat {
+    padding: 0.5rem;
+    text-align: center;
+  }
+  
+  /* Filter Panel Mobile */
+  .filter-panel {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: white;
+    padding: 1rem;
+    margin: -1rem -1rem 1rem -1rem;
+    border-bottom: 1px solid var(--color-border-primary);
+  }
+  
+  .filter-panel .search-input {
+    font-size: 1rem;
+    padding: 0.75rem;
+  }
+  
+  .filter-panel .filter-tags {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .filter-panel .expanded-filters {
+    margin-top: 1rem;
+  }
+  
+  .filter-panel .filter-section {
+    margin-bottom: 1rem;
+  }
+  
+  .filter-panel .filter-options {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+  
+  /* Quick Actions Mobile */
+  .quick-actions-panel {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    left: 1rem;
+    z-index: 40;
+  }
+  
+  .quick-actions-panel .panel-content {
+    max-height: 60vh;
+    overflow-y: auto;
+  }
+  
+  .quick-actions-panel .action-button {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .quick-actions-panel .action-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  /* Mobile Workstation Cards */
+  .mobile-workstation-card {
+    margin-bottom: 1rem;
+  }
+  
+  .mobile-workstation-card .card-content {
+    padding: 1rem;
+  }
+  
+  .mobile-workstation-card .workstation-header {
+    gap: 0.75rem;
+  }
+  
+  .mobile-workstation-card .workstation-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .mobile-workstation-card .quick-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+  
+  .mobile-workstation-card .operator-preview {
+    gap: 0.5rem;
+  }
+  
+  .mobile-workstation-card .operator-item {
+    padding: 0.5rem;
+    gap: 0.5rem;
+  }
+  
+  .mobile-workstation-card .operator-avatar {
+    width: 1.5rem;
+    height: 1.5rem;
+    font-size: 0.625rem;
+  }
+  
+  /* Touch targets for mobile */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0.5rem;
+  }
+  
+  .button-mobile {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    min-height: 44px;
+  }
+  
+  .input-mobile {
+    padding: 0.75rem;
+    font-size: 1rem;
+    min-height: 44px;
+  }
+  
+  /* Mobile animations */
+  .mobile-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .mobile-slide-down {
+    animation: slideDown 0.3s ease-out;
+  }
+  
+  .mobile-fade-in {
+    animation: fadeIn 0.2s ease-out;
+  }
+}
+
+/* Tablet styles */
+@media (min-width: 640px) and (max-width: 1023px) {
+  .production-setup-container {
+    padding: 1.5rem;
+    max-width: 1024px;
+  }
+  
+  /* Status Dashboard Tablet */
+  .status-dashboard .status-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .status-card {
+    padding: 1.25rem;
+    min-height: 100px;
+  }
+  
+  .status-card .card-content {
+    flex-direction: row;
+    text-align: left;
+  }
+  
+  .status-card .card-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  .status-card .card-value {
+    font-size: 1.75rem;
+  }
+  
+  /* Workstation Cards Tablet */
+  .workstation-card {
+    margin-bottom: 1.25rem;
+  }
+  
+  .workstation-card .card-header {
+    padding: 1.25rem;
+    flex-direction: row;
+  }
+  
+  .workstation-card .workstation-info {
+    text-align: left;
+  }
+  
+  .workstation-card .workstation-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.5rem;
+  }
+  
+  .workstation-card .operator-row {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
+  
+  .workstation-card .operator-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.875rem;
+  }
+  
+  .workstation-card .quick-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  
+  /* Filter Panel Tablet */
+  .filter-panel {
+    position: relative;
+    padding: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .filter-panel .filter-options {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .filter-panel .filter-options-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  /* Quick Actions Tablet */
+  .quick-actions-panel {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    width: auto;
+    left: auto;
+  }
+  
+  .quick-actions-panel .panel-content {
+    width: 320px;
+    max-height: 70vh;
+  }
+  
+  /* Mobile Workstation Cards Tablet */
+  .mobile-workstation-card .card-content {
+    padding: 1.25rem;
+  }
+  
+  .mobile-workstation-card .quick-stats {
+    gap: 0.75rem;
+  }
+  
+  .mobile-workstation-card .operator-item {
+    padding: 0.75rem;
+  }
+  
+  .mobile-workstation-card .operator-avatar {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.75rem;
+  }
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .production-setup-container {
+    padding: 2rem;
+    max-width: 1280px;
+  }
+  
+  /* Status Dashboard Desktop */
+  .status-dashboard .status-cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .status-card {
+    padding: 1.5rem;
+    min-height: 120px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .status-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .status-card .card-content {
+    align-items: flex-start;
+  }
+  
+  .status-card .card-icon {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+  
+  .status-card .card-value {
+    font-size: 2rem;
+  }
+  
+  .status-card .card-trend {
+    margin-top: 0.5rem;
+  }
+  
+  /* Workstation Cards Desktop */
+  .workstation-card {
+    margin-bottom: 1.5rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .workstation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .workstation-card .card-header {
+    padding: 1.5rem;
+  }
+  
+  .workstation-card .workstation-icon {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.75rem;
+  }
+  
+  .workstation-card .operator-row {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  
+  .workstation-card .operator-avatar {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1rem;
+  }
+  
+  .workstation-card .quick-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  
+  .workstation-card .quick-stat {
+    padding: 1rem;
+  }
+  
+  /* Filter Panel Desktop */
+  .filter-panel {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+  }
+  
+  .filter-panel .filter-options {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  
+  .filter-panel .filter-options-4 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .filter-panel .filter-options-5 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  .filter-panel .sort-options {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  
+  /* Quick Actions Desktop */
+  .quick-actions-panel {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+  }
+  
+  .quick-actions-panel .panel-content {
+    width: 380px;
+    max-height: 80vh;
+  }
+  
+  .quick-actions-panel .action-button {
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  
+  .quick-actions-panel .action-icon {
+    width: 3rem;
+    height: 3rem;
+  }
+  
+  /* Compact Quick Actions Bar Desktop */
+  .compact-quick-actions-bar {
+    position: fixed;
+    bottom: 2rem;
+    left: 2rem;
+    right: auto;
+    width: auto;
+  }
+  
+  .compact-quick-actions-bar .action-buttons {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  /* Grid layouts for desktop */
+  .desktop-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .desktop-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .desktop-grid-4 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  /* Hover effects for desktop */
+  .desktop-hover-lift {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .desktop-hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .desktop-hover-scale {
+    transition: transform 0.2s ease;
+  }
+  
+  .desktop-hover-scale:hover {
+    transform: scale(1.05);
+  }
+  
+  .desktop-hover-glow {
+    transition: box-shadow 0.2s ease;
+  }
+  
+  .desktop-hover-glow:hover {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+  }
+}
+
+/* Large desktop styles */
+@media (min-width: 1280px) {
+  .production-setup-container {
+    padding: 2.5rem;
+    max-width: 1536px;
+  }
+  
+  .status-dashboard .status-cards-grid {
+    gap: 2rem;
+  }
+  
+  .status-card {
+    padding: 2rem;
+    min-height: 140px;
+  }
+  
+  .status-card .card-icon {
+    width: 4rem;
+    height: 4rem;
+  }
+  
+  .status-card .card-value {
+    font-size: 2.25rem;
+  }
+  
+  .workstation-card {
+    margin-bottom: 2rem;
+  }
+  
+  .workstation-card .card-header {
+    padding: 2rem;
+  }
+  
+  .workstation-card .operator-row {
+    padding: 1.5rem;
+  }
+  
+  .filter-panel {
+    padding: 2rem;
+  }
+  
+  .quick-actions-panel .panel-content {
+    width: 420px;
+  }
+}
+
+/* Ultra-wide desktop styles */
+@media (min-width: 1536px) {
+  .production-setup-container {
+    max-width: 1792px;
+  }
+  
+  .status-dashboard .status-cards-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.5rem;
+  }
+  
+  .desktop-grid-4 {
+    gap: 2rem;
+  }
+  
+  .desktop-grid-3 {
+    gap: 2rem;
+  }
+  
+  .desktop-grid-2 {
+    gap: 2rem;
+  }
+}
+
+/* Responsive animations */
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Responsive utility classes */
+.mobile-only {
+  display: block;
+}
+
+.tablet-only {
+  display: none;
+}
+
+.desktop-only {
+  display: none;
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+  .mobile-only {
+    display: none;
+  }
+  
+  .tablet-only {
+    display: block;
+  }
+  
+  .desktop-only {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mobile-only {
+    display: none;
+  }
+  
+  .tablet-only {
+    display: none;
+  }
+  
+  .desktop-only {
+    display: block;
+  }
+}
+
+/* Mobile-first responsive utilities */
+.responsive-padding {
+  padding: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .responsive-padding {
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-padding {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .responsive-padding {
+    padding: 2rem;
+  }
+}
+
+.responsive-gap {
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .responsive-gap {
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-gap {
+    gap: 1.5rem;
+  }
+}
+
+.responsive-text {
+  font-size: 0.875rem;
+}
+
+@media (min-width: 640px) {
+  .responsive-text {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-text {
+    font-size: 1.125rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .production-setup-container {
+    padding: 0;
+    max-width: none;
+  }
+  
+  .quick-actions-panel,
+  .filter-panel,
+  .mobile-workstation-card {
+    display: none;
+  }
+  
+  .status-dashboard,
+  .workstation-card {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  
+  .status-card,
+  .workstation-card {
+    border: 1px solid #ccc;
+    box-shadow: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .status-card,
+  .workstation-card,
+  .filter-panel {
+    border-width: 2px;
+  }
+  
+  .status-card .card-icon,
+  .workstation-card .workstation-icon {
+    border: 1px solid currentColor;
+  }
+  
+  .button-mobile,
+  .input-mobile {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .mobile-slide-up,
+  .mobile-slide-down,
+  .mobile-fade-in,
+  .desktop-hover-lift,
+  .desktop-hover-scale,
+  .desktop-hover-glow,
+  .status-card,
+  .workstation-card,
+  .quick-actions-panel .action-button {
+    animation: none;
+    transition: none;
+  }
+  
+  .status-card:hover,
+  .workstation-card:hover,
+  .desktop-hover-lift:hover,
+  .desktop-hover-scale:hover {
+    transform: none;
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .production-setup-container {
+    background-color: #1a1a1a;
+    color: #ffffff;
+  }
+  
+  .status-card,
+  .workstation-card,
+  .filter-panel {
+    background-color: #2d2d2d;
+    border-color: #404040;
+    color: #ffffff;
+  }
+  
+  .status-card .card-value,
+  .workstation-card .workstation-name {
+    color: #ffffff;
+  }
+  
+  .status-card .card-label,
+  .workstation-card .workstation-code {
+    color: #a0a0a0;
+  }
+  
+  .input-mobile,
+  .search-input {
+    background-color: #404040;
+    border-color: #606060;
+    color: #ffffff;
+  }
+  
+  .button-mobile {
+    background-color: #3b82f6;
+    border-color: #2563eb;
+    color: #ffffff;
+  }
+}
+
+/* Focus visible support */
+.focus-visible:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.focus-visible:focus:not(:focus-visible) {
+  outline: none;
+}

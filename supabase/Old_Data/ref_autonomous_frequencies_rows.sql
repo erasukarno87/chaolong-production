@@ -1,0 +1,1 @@
+INSERT INTO "public"."ref_autonomous_frequencies" ("id", "name", "sort_order", "active") VALUES ('6c5e79ed-a56c-4c63-a493-8536a874a70f', 'Harian', 20, true), ('83f19789-8e7e-4d62-965d-03ebad3f558f', 'Setiap Shift', 10, true), ('de1f8baf-7fb9-467c-acd3-ed2cc3f70b8d', 'Bulanan', 40, true), ('e3de60c5-a05d-437c-b98b-cf3d8130bd05', 'Mingguan', 30, true);

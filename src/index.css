@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===========================================================
+   PT. Chao Long — Production System Design Tokens
+   All colors in HSL.
+   =========================================================== */
+
+@layer base {
+  :root {
+    /* surfaces */
+    --background: 222 33% 97%;          /* #F4F6FA */
+    --foreground: 213 36% 10%;          /* #0F1923 */
+    --surface: 0 0% 100%;
+    --surface-2: 220 25% 98%;           /* #F8F9FC */
+
+    --card: 0 0% 100%;
+    --card-foreground: 213 36% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 213 36% 10%;
+
+    /* brand */
+    --primary: 217 96% 54%;             /* #1A6EFA  */
+    --primary-foreground: 0 0% 100%;
+    --primary-deep: 217 100% 42%;       /* #0047D4  */
+
+    --secondary: 220 25% 96%;
+    --secondary-foreground: 213 36% 10%;
+
+    --muted: 220 25% 96%;
+    --muted-foreground: 220 13% 41%;    /* #5A6478 */
+    --muted-2: 220 14% 66%;             /* #9BA3B4 */
+
+    --accent: 220 25% 96%;
+    --accent-foreground: 213 36% 10%;
+
+    /* status */
+    --success: 162 100% 35%;            /* #00B37D */
+    --success-foreground: 162 100% 24%;
+    --success-bg: 156 65% 95%;
+
+    --warning: 38 92% 50%;              /* #F59E0B */
+    --warning-foreground: 32 81% 29%;
+    --warning-bg: 48 100% 96%;
+
+    --destructive: 0 84% 60%;           /* #EF4444 */
+    --destructive-foreground: 0 0% 100%;
+    --danger-bg: 0 86% 97%;
+    --danger-text: 0 74% 36%;
+
+    --info-bg: 214 100% 97%;
+    --info-text: 224 76% 48%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 217 96% 54%;
+
+    --radius: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.25rem;
+
+    /* shadows */
+    --shadow-sm: 0 1px 3px hsl(0 0% 0% / 0.06), 0 1px 2px hsl(0 0% 0% / 0.04);
+    --shadow-md: 0 4px 16px hsl(0 0% 0% / 0.08), 0 1px 4px hsl(0 0% 0% / 0.04);
+    --shadow-lg: 0 12px 40px hsl(0 0% 0% / 0.10), 0 4px 12px hsl(0 0% 0% / 0.05);
+    --gradient-primary: linear-gradient(135deg, hsl(217 96% 54%), hsl(217 100% 42%));
+    --gradient-success: linear-gradient(90deg, hsl(162 100% 35%), hsl(155 78% 57%));
+    --gradient-warning: linear-gradient(90deg, hsl(38 92% 50%), hsl(45 96% 64%));
+    --gradient-danger:  linear-gradient(90deg, hsl(0 84% 60%),  hsl(0 86% 73%));
+
+    /* sidebar tokens (shadcn) */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 213 36% 10%;
+    --sidebar-primary: 217 96% 54%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 25% 96%;
+    --sidebar-accent-foreground: 213 36% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217 96% 54%;
+  }
+
+  .dark {
+    /* monitoring wall mode */
+    --background: 222 33% 7%;
+    --foreground: 220 25% 96%;
+    --surface: 222 33% 10%;
+    --surface-2: 222 33% 12%;
+
+    --card: 222 33% 10%;
+    --card-foreground: 220 25% 96%;
+    --popover: 222 33% 10%;
+    --popover-foreground: 220 25% 96%;
+
+    --primary: 217 96% 60%;
+    --primary-foreground: 0 0% 100%;
+    --primary-deep: 217 100% 50%;
+
+    --secondary: 222 25% 15%;
+    --secondary-foreground: 220 25% 96%;
+    --muted: 222 25% 15%;
+    --muted-foreground: 220 14% 70%;
+    --muted-2: 220 14% 50%;
+    --accent: 222 25% 18%;
+    --accent-foreground: 220 25% 96%;
+
+    --border: 222 25% 18%;
+    --input: 222 25% 18%;
+    --ring: 217 96% 60%;
+
+    --sidebar-background: 222 33% 10%;
+    --sidebar-foreground: 220 25% 96%;
+    --sidebar-primary: 217 96% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 25% 15%;
+    --sidebar-accent-foreground: 220 25% 96%;
+    --sidebar-border: 222 25% 18%;
+    --sidebar-ring: 217 96% 60%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+  }
+  .font-mono { font-family: 'JetBrains Mono', ui-monospace, monospace; }
+}
+
+@layer utilities {
+  .surface { background: hsl(var(--surface)); }
+  .surface-2 { background: hsl(var(--surface-2)); }
+  .shadow-card { box-shadow: var(--shadow-sm); }
+  .shadow-card-md { box-shadow: var(--shadow-md); }
+  .shadow-card-lg { box-shadow: var(--shadow-lg); }
+  .gradient-primary { background: var(--gradient-primary); }
+  .text-success { color: hsl(var(--success)); }
+  .text-warning { color: hsl(var(--warning)); }
+  .text-danger  { color: hsl(var(--destructive)); }
+
+  /* Status chips reusable */
+  .chip {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider;
+  }
+  .chip-success { background: hsl(var(--success-bg)); color: hsl(var(--success-foreground)); }
+  .chip-warning { background: hsl(var(--warning-bg)); color: hsl(var(--warning-foreground)); }
+  .chip-danger  { background: hsl(var(--danger-bg));  color: hsl(var(--danger-text)); }
+  .chip-info    { background: hsl(var(--info-bg));    color: hsl(var(--info-text)); }
+
+  /* Live dot pulse */
+  .live-dot {
+    @apply inline-block h-2 w-2 rounded-full bg-success;
+    box-shadow: 0 0 0 0 hsl(var(--success) / 0.7);
+    animation: pulse-dot 1.6s infinite;
+  }
+  @keyframes pulse-dot {
+    0%   { box-shadow: 0 0 0 0 hsl(var(--success) / 0.6); }
+    70%  { box-shadow: 0 0 0 8px hsl(var(--success) / 0); }
+    100% { box-shadow: 0 0 0 0 hsl(var(--success) / 0); }
+  }
+
+  .fade-in { animation: fade-in 0.4s ease both; }
+  @keyframes fade-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* App-wide base */
+html { scroll-behavior: smooth; }

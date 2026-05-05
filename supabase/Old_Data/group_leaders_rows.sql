@@ -1,0 +1,1 @@
+INSERT INTO "public"."group_leaders" ("id", "group_id", "created_at", "user_id") VALUES ('aa7ed2a2-da3a-46d6-9860-fca17805c706', '5e70d38e-4c49-42c7-ab7d-d2e53ccc6966', '2026-05-02 05:19:12.1709+00', 'c2e9429f-69b7-4579-bb3d-5ddf6319a879');

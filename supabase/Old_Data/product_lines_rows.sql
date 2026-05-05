@@ -1,0 +1,1 @@
+INSERT INTO "public"."product_lines" ("product_id", "line_id", "created_at") VALUES ('0ed3823a-10c7-4655-b8f1-898dfc788ce2', '63f05394-78b9-4658-8168-38f29467047a', '2026-05-03 05:22:59.615884+00'), ('83b49667-5eb5-49ee-88b4-f0d4c2d1db02', '717bbf50-d06b-498a-8956-5c1aad37fa55', '2026-05-03 05:23:09.849226+00');

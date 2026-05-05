@@ -1,0 +1,2670 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Production Forms — PT. Chao Long</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --c-bg: #F4F6FA;
+  --c-surface: #FFFFFF;
+  --c-surface2: #F8F9FC;
+  --c-border: rgba(0,0,0,0.07);
+  --c-border2: rgba(0,0,0,0.12);
+  --c-text: #0F1923;
+  --c-text2: #5A6478;
+  --c-text3: #9BA3B4;
+  --c-accent: #1A6EFA;
+  --c-accent2: #0047D4;
+  --c-green: #00B37D;
+  --c-green-bg: #EDFAF4;
+  --c-green-text: #007A55;
+  --c-amber: #F59E0B;
+  --c-amber-bg: #FFFBEB;
+  --c-amber-text: #92400E;
+  --c-red: #EF4444;
+  --c-red-bg: #FEF2F2;
+  --c-red-text: #991B1B;
+  --c-blue-bg: #EFF6FF;
+  --c-blue-text: #1D4ED8;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,0.10), 0 4px 12px rgba(0,0,0,0.05);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --font-main: 'Outfit', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-main); background: var(--c-bg); color: var(--c-text); min-height: 100vh; line-height: 1.5; }
+
+/* ===== HEADER ===== */
+.header {
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-border);
+  padding: 0 24px;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px; max-width: 1440px; margin: 0 auto; gap: 16px; flex-wrap: wrap;
+}
+.logo-area { display: flex; align-items: center; gap: 12px; }
+.logo-icon {
+  width: 38px; height: 38px;
+  background: linear-gradient(135deg, #1A6EFA 0%, #0047D4 100%);
+  border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.logo-icon svg { width: 20px; height: 20px; fill: white; }
+.logo-text .title { font-size: 15px; font-weight: 700; color: var(--c-text); letter-spacing: -0.01em; }
+.logo-text .subtitle { font-size: 11px; color: var(--c-text3); font-family: var(--font-mono); letter-spacing: 0.02em; }
+.header-right { display: flex; align-items: center; gap: 12px; }
+.role-badge {
+  display: flex; align-items: center; gap: 7px;
+  padding: 5px 12px; border-radius: 99px;
+  font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+  cursor: pointer; transition: all 0.2s;
+}
+.role-admin { background: linear-gradient(135deg, #7C3AED, #5B21B6); color: white; }
+.role-leader { background: linear-gradient(135deg, #1A6EFA, #0047D4); color: white; }
+.role-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.7); }
+.clock-area { text-align: right; }
+.clock-time { font-family: var(--font-mono); font-size: 14px; font-weight: 600; color: var(--c-text); }
+.clock-date { font-size: 10px; color: var(--c-text3); }
+
+/* ===== ROLE SWITCHER ===== */
+.role-switcher {
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-border);
+  padding: 12px 24px;
+}
+.role-switcher-inner {
+  max-width: 1440px; margin: 0 auto;
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.rs-label { font-size: 12px; font-weight: 600; color: var(--c-text3); letter-spacing: 0.06em; text-transform: uppercase; }
+.rs-btn {
+  display: flex; align-items: center; gap: 8px;
+  padding: 8px 16px; border-radius: var(--radius-md);
+  border: 1.5px solid var(--c-border2);
+  background: var(--c-surface2); font-family: var(--font-main);
+  font-size: 13px; font-weight: 500; color: var(--c-text2);
+  cursor: pointer; transition: all 0.2s;
+}
+.rs-btn:hover { border-color: var(--c-accent); color: var(--c-accent); background: var(--c-blue-bg); }
+.rs-btn.active { border-color: var(--c-accent); color: var(--c-accent); background: var(--c-blue-bg); font-weight: 600; }
+.rs-btn.active-purple { border-color: #7C3AED; color: #7C3AED; background: #F5F3FF; font-weight: 600; }
+.rs-icon { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; }
+
+/* ===== MAIN / PAGES ===== */
+.page { display: none; animation: fadeUp 0.35s ease; }
+.page.active { display: block; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+.content { max-width: 1440px; margin: 0 auto; padding: 24px; }
+
+/* ===== PAGE HEADER ===== */
+.page-hero {
+  border-radius: var(--radius-xl); padding: 20px 24px;
+  margin-bottom: 24px; position: relative; overflow: hidden;
+}
+.page-hero.hero-purple { background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 60%, #4C1D95 100%); }
+.page-hero.hero-blue { background: linear-gradient(135deg, #1A6EFA 0%, #0047D4 60%, #003BB5 100%); }
+.page-hero.hero-teal { background: linear-gradient(135deg, #0891B2 0%, #0E7490 60%, #164E63 100%); }
+.page-hero.hero-orange { background: linear-gradient(135deg, #EA580C 0%, #C2410C 60%, #9A3412 100%); }
+.page-hero::before {
+  content: ''; position: absolute; top: -40px; right: -40px;
+  width: 220px; height: 220px; background: rgba(255,255,255,0.06); border-radius: 50%;
+}
+.page-hero::after {
+  content: ''; position: absolute; bottom: -60px; right: 160px;
+  width: 160px; height: 160px; background: rgba(255,255,255,0.04); border-radius: 50%;
+}
+.hero-inner { position: relative; z-index: 1; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.hero-icon { width: 48px; height: 48px; border-radius: 14px; background: rgba(255,255,255,0.15); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+.hero-title { font-size: 20px; font-weight: 700; color: white; letter-spacing: -0.02em; }
+.hero-sub { font-size: 12px; color: rgba(255,255,255,0.65); font-family: var(--font-mono); }
+.hero-actions { margin-left: auto; display: flex; gap: 10px; }
+
+/* ===== SUB NAV (Tab inside page) ===== */
+.sub-nav { display: flex; gap: 4px; margin-bottom: 20px; flex-wrap: wrap; }
+.sub-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 16px; border-radius: var(--radius-md);
+  border: 1.5px solid var(--c-border2);
+  background: var(--c-surface); font-family: var(--font-main);
+  font-size: 12px; font-weight: 500; color: var(--c-text2);
+  cursor: pointer; transition: all 0.2s; white-space: nowrap;
+}
+.sub-btn:hover { border-color: var(--c-border2); background: var(--c-surface2); }
+.sub-btn.active { border-color: var(--c-accent); color: var(--c-accent); background: var(--c-blue-bg); font-weight: 600; }
+.sub-btn.active-purple { border-color: #7C3AED; color: #7C3AED; background: #F5F3FF; font-weight: 600; }
+.sub-panel { display: none; animation: fadeUp 0.3s ease; }
+.sub-panel.active { display: block; }
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--c-surface); border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg); padding: 20px; box-shadow: var(--shadow-sm);
+  transition: box-shadow 0.2s;
+}
+.card:hover { box-shadow: var(--shadow-md); }
+.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+.card-title {
+  font-size: 13px; font-weight: 600; color: var(--c-text);
+  letter-spacing: -0.01em; display: flex; align-items: center; gap: 8px;
+}
+.card-title-icon {
+  width: 28px; height: 28px; border-radius: 8px;
+  display: flex; align-items: center; justify-content: center; font-size: 13px;
+}
+.icon-blue { background: var(--c-blue-bg); }
+.icon-green { background: var(--c-green-bg); }
+.icon-amber { background: var(--c-amber-bg); }
+.icon-red { background: var(--c-red-bg); }
+.icon-purple { background: #F5F3FF; }
+
+/* ===== FORM ELEMENTS ===== */
+.form-grid { display: grid; gap: 16px; }
+.form-grid-2 { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.form-grid-3 { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+.form-grid-4 { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+
+.form-field { display: flex; flex-direction: column; gap: 6px; }
+.form-field.span-2 { grid-column: span 2; }
+.form-field.span-3 { grid-column: span 3; }
+
+.form-label {
+  font-size: 11px; font-weight: 600; color: var(--c-text2);
+  letter-spacing: 0.06em; text-transform: uppercase;
+  display: flex; align-items: center; gap: 5px;
+}
+.form-label .req { color: var(--c-red); font-size: 12px; }
+.form-label .hint {
+  font-size: 10px; font-weight: 400; color: var(--c-text3);
+  letter-spacing: 0.02em; text-transform: none; margin-left: 4px;
+}
+
+.form-input, .form-select, .form-textarea {
+  height: 42px; padding: 0 14px;
+  background: var(--c-surface2); border: 1.5px solid var(--c-border2);
+  border-radius: var(--radius-sm); font-family: var(--font-main);
+  font-size: 13px; color: var(--c-text);
+  transition: all 0.2s; outline: none; width: 100%;
+}
+.form-textarea { height: auto; min-height: 80px; padding: 10px 14px; resize: vertical; }
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--c-accent); background: white;
+  box-shadow: 0 0 0 3px rgba(26,110,250,0.08);
+}
+.form-input::placeholder, .form-textarea::placeholder { color: var(--c-text3); }
+.form-select { appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%239BA3B4' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 36px; }
+
+.form-input-mono { font-family: var(--font-mono); font-size: 14px; font-weight: 500; }
+
+.input-unit {
+  position: relative; display: flex; align-items: center;
+}
+.input-unit .form-input { padding-right: 52px; }
+.unit-tag {
+  position: absolute; right: 12px;
+  font-size: 11px; font-weight: 600; color: var(--c-text3); font-family: var(--font-mono);
+  pointer-events: none;
+}
+
+.input-prefix {
+  position: relative; display: flex; align-items: center;
+}
+.prefix-icon {
+  position: absolute; left: 12px;
+  font-size: 14px; pointer-events: none; z-index: 1;
+}
+.input-prefix .form-input { padding-left: 36px; }
+
+.form-hint { font-size: 11px; color: var(--c-text3); margin-top: 2px; }
+.form-error { font-size: 11px; color: var(--c-red); margin-top: 2px; display: none; }
+
+/* ===== DIVIDER ===== */
+.form-divider {
+  display: flex; align-items: center; gap: 12px;
+  margin: 6px 0; color: var(--c-text3); font-size: 11px;
+  font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
+}
+.form-divider::before, .form-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--c-border);
+}
+
+/* ===== TOGGLE / RADIO GROUP ===== */
+.toggle-group { display: flex; gap: 6px; flex-wrap: wrap; }
+.toggle-opt {
+  display: flex; align-items: center; gap: 7px;
+  padding: 8px 14px; border-radius: var(--radius-sm);
+  border: 1.5px solid var(--c-border2); background: var(--c-surface2);
+  font-size: 12px; font-weight: 500; color: var(--c-text2);
+  cursor: pointer; transition: all 0.2s; user-select: none;
+}
+.toggle-opt:hover { border-color: var(--c-border2); background: var(--c-surface); }
+.toggle-opt.selected { border-color: var(--c-accent); color: var(--c-accent); background: var(--c-blue-bg); font-weight: 600; }
+.toggle-opt.selected-green { border-color: var(--c-green); color: var(--c-green-text); background: var(--c-green-bg); font-weight: 600; }
+.toggle-opt.selected-amber { border-color: var(--c-amber); color: var(--c-amber-text); background: var(--c-amber-bg); font-weight: 600; }
+.toggle-opt.selected-red { border-color: var(--c-red); color: var(--c-red-text); background: var(--c-red-bg); font-weight: 600; }
+.toggle-dot { width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+/* ===== INLINE TABLE FORM ===== */
+.table-form { width: 100%; border-collapse: collapse; }
+.table-form thead th {
+  font-size: 10px; font-weight: 700; color: var(--c-text3); letter-spacing: 0.07em;
+  text-transform: uppercase; padding: 8px 12px; text-align: left;
+  border-bottom: 1.5px solid var(--c-border2); background: var(--c-surface2);
+  white-space: nowrap;
+}
+.table-form thead th:first-child { border-radius: 8px 0 0 0; }
+.table-form thead th:last-child { border-radius: 0 8px 0 0; }
+.table-form tbody tr { border-bottom: 1px solid var(--c-border); transition: background 0.15s; }
+.table-form tbody tr:hover { background: var(--c-surface2); }
+.table-form tbody td { padding: 8px 10px; vertical-align: middle; }
+.table-form tbody tr:last-child { border-bottom: none; }
+.table-form .cell-input {
+  height: 36px; padding: 0 10px; background: transparent;
+  border: 1.5px solid transparent; border-radius: 6px;
+  font-family: var(--font-main); font-size: 13px; color: var(--c-text);
+  transition: all 0.2s; outline: none; width: 100%;
+}
+.table-form .cell-input:focus { background: white; border-color: var(--c-accent); box-shadow: 0 0 0 3px rgba(26,110,250,0.08); }
+.table-form .cell-input::placeholder { color: var(--c-text3); }
+
+/* ===== SKILL LEVEL SELECTOR ===== */
+.skill-sel { display: flex; gap: 4px; }
+.sk-btn {
+  width: 32px; height: 32px; border-radius: 8px; border: 1.5px solid var(--c-border2);
+  background: var(--c-surface2); font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all 0.15s; display: flex; align-items: center; justify-content: center;
+  color: var(--c-text3);
+}
+.sk-btn:hover { transform: scale(1.1); }
+.sk-btn.sk0.selected { background: #F1F5F9; border-color: #94A3B8; color: #475569; }
+.sk-btn.sk1.selected { background: #FEF3C7; border-color: #F59E0B; color: #92400E; }
+.sk-btn.sk2.selected { background: var(--c-blue-bg); border-color: var(--c-accent); color: var(--c-accent2); }
+.sk-btn.sk3.selected { background: var(--c-green-bg); border-color: var(--c-green); color: var(--c-green-text); }
+.sk-btn.sk4.selected { background: #F5F3FF; border-color: #7C3AED; color: #5B21B6; }
+
+/* ===== HOURLY INPUT TABLE ===== */
+.hourly-table { width: 100%; border-collapse: collapse; }
+.hourly-table thead th {
+  font-size: 10px; font-weight: 700; color: var(--c-text3); letter-spacing: 0.07em;
+  text-transform: uppercase; padding: 8px 12px; text-align: center;
+  border-bottom: 1.5px solid var(--c-border2); background: var(--c-surface2);
+}
+.hourly-table tbody tr { border-bottom: 1px solid var(--c-border); }
+.hourly-table tbody tr:last-child { border-bottom: none; }
+.hourly-table tbody td { padding: 6px 8px; text-align: center; vertical-align: middle; }
+.hour-label {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+  color: var(--c-text); background: var(--c-surface2);
+  padding: 4px 10px; border-radius: 6px; white-space: nowrap;
+}
+.hour-input {
+  height: 36px; width: 80px; text-align: center; padding: 0 8px;
+  border: 1.5px solid var(--c-border2); border-radius: 8px;
+  font-family: var(--font-mono); font-size: 14px; font-weight: 600;
+  background: var(--c-surface2); color: var(--c-text);
+  transition: all 0.2s; outline: none;
+}
+.hour-input:focus { border-color: var(--c-accent); background: white; box-shadow: 0 0 0 3px rgba(26,110,250,0.08); }
+.hour-input.ok { border-color: var(--c-green); background: var(--c-green-bg); color: var(--c-green-text); }
+.hour-input.ng-val { border-color: var(--c-amber); background: var(--c-amber-bg); color: var(--c-amber-text); }
+.hour-input.below { border-color: var(--c-red); background: var(--c-red-bg); color: var(--c-red-text); }
+.status-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 8px; border-radius: 99px; font-size: 10px; font-weight: 600;
+}
+.sc-ok { background: var(--c-green-bg); color: var(--c-green-text); }
+.sc-ng { background: var(--c-amber-bg); color: var(--c-amber-text); }
+.sc-below { background: var(--c-red-bg); color: var(--c-red-text); }
+.sc-empty { background: var(--c-bg); color: var(--c-text3); border: 1px dashed var(--c-border2); }
+
+/* ===== BUTTONS ===== */
+.btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 10px 18px; border-radius: var(--radius-md);
+  font-family: var(--font-main); font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; border: none; letter-spacing: -0.01em;
+}
+.btn-primary { background: linear-gradient(135deg, #1A6EFA, #0047D4); color: white; box-shadow: 0 4px 12px rgba(26,110,250,0.25); }
+.btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(26,110,250,0.35); }
+.btn-primary:active { transform: none; box-shadow: 0 2px 8px rgba(26,110,250,0.2); }
+.btn-purple { background: linear-gradient(135deg, #7C3AED, #5B21B6); color: white; box-shadow: 0 4px 12px rgba(124,58,237,0.25); }
+.btn-purple:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(124,58,237,0.35); }
+.btn-green { background: linear-gradient(135deg, #00B37D, #059669); color: white; box-shadow: 0 4px 12px rgba(0,179,125,0.25); }
+.btn-green:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,179,125,0.35); }
+.btn-amber { background: linear-gradient(135deg, #F59E0B, #D97706); color: white; box-shadow: 0 4px 12px rgba(245,158,11,0.25); }
+.btn-amber:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(245,158,11,0.35); }
+.btn-red { background: linear-gradient(135deg, #EF4444, #DC2626); color: white; box-shadow: 0 4px 12px rgba(239,68,68,0.2); }
+.btn-ghost {
+  background: transparent; border: 1.5px solid var(--c-border2);
+  color: var(--c-text2); box-shadow: none;
+}
+.btn-ghost:hover { background: var(--c-surface2); border-color: var(--c-border2); }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+.btn-lg { padding: 13px 24px; font-size: 14px; }
+
+/* ===== FORM ACTIONS ===== */
+.form-actions {
+  display: flex; align-items: center; justify-content: flex-end;
+  gap: 10px; padding-top: 16px; border-top: 1px solid var(--c-border); margin-top: 8px;
+}
+
+/* ===== BADGE ===== */
+.badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 10px; border-radius: 99px; font-size: 11px; font-weight: 600;
+}
+.badge-green { background: var(--c-green-bg); color: var(--c-green-text); border: 1px solid rgba(0,179,125,0.2); }
+.badge-amber { background: var(--c-amber-bg); color: var(--c-amber-text); border: 1px solid rgba(245,158,11,0.2); }
+.badge-red { background: var(--c-red-bg); color: var(--c-red-text); border: 1px solid rgba(239,68,68,0.15); }
+.badge-blue { background: var(--c-blue-bg); color: var(--c-blue-text); border: 1px solid rgba(26,110,250,0.15); }
+.badge-purple { background: #F5F3FF; color: #6D28D9; border: 1px solid rgba(124,58,237,0.15); }
+.badge-gray { background: #F1F3F7; color: var(--c-text2); border: 1px solid var(--c-border); }
+
+/* ===== TOAST ===== */
+.toast-wrap {
+  position: fixed; bottom: 24px; right: 24px; z-index: 999;
+  display: flex; flex-direction: column; gap: 10px; pointer-events: none;
+}
+.toast {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px; border-radius: var(--radius-md);
+  background: var(--c-text); color: white;
+  box-shadow: var(--shadow-lg); font-size: 13px; font-weight: 500;
+  transform: translateX(120%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: all; min-width: 280px;
+}
+.toast.show { transform: translateX(0); }
+.toast-icon { font-size: 18px; flex-shrink: 0; }
+.toast.toast-success { background: #064E3B; border-left: 4px solid var(--c-green); }
+.toast.toast-error { background: #7F1D1D; border-left: 4px solid var(--c-red); }
+.toast.toast-info { background: #1E3A5F; border-left: 4px solid var(--c-accent); }
+
+/* ===== GRID LAYOUTS ===== */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+
+/* ===== SECTION HEADER ===== */
+.section-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 14px;
+}
+.section-title {
+  font-size: 14px; font-weight: 700; color: var(--c-text);
+  display: flex; align-items: center; gap: 8px;
+}
+.section-title-bar {
+  width: 3px; height: 16px; border-radius: 99px;
+  background: linear-gradient(180deg, var(--c-accent), var(--c-accent2));
+}
+
+/* ===== STEP INDICATOR ===== */
+.step-nav {
+  display: flex; gap: 0; margin-bottom: 24px;
+  background: var(--c-surface); border: 1px solid var(--c-border);
+  border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-sm);
+}
+.step-item {
+  flex: 1; padding: 14px 16px; display: flex; align-items: center; gap: 12px;
+  border-right: 1px solid var(--c-border); cursor: pointer; transition: all 0.2s;
+  position: relative;
+}
+.step-item:last-child { border-right: none; }
+.step-item:hover { background: var(--c-surface2); }
+.step-item.active { background: var(--c-blue-bg); }
+.step-item.done { background: var(--c-green-bg); }
+.step-num {
+  width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--c-border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: var(--c-text3); flex-shrink: 0;
+  background: var(--c-surface2); transition: all 0.2s;
+}
+.step-item.active .step-num { border-color: var(--c-accent); background: var(--c-accent); color: white; }
+.step-item.done .step-num { border-color: var(--c-green); background: var(--c-green); color: white; }
+.step-info .step-label { font-size: 11px; font-weight: 700; color: var(--c-text3); letter-spacing: 0.05em; text-transform: uppercase; }
+.step-info .step-name { font-size: 13px; font-weight: 600; color: var(--c-text); margin-top: 1px; }
+.step-item.active .step-info .step-name { color: var(--c-accent); }
+.step-item.done .step-info .step-name { color: var(--c-green-text); }
+
+/* ===== PRODUCTION SETUP TIMELINE ===== */
+.setup-timeline { display: flex; flex-direction: column; gap: 0; }
+.setup-step {
+  display: flex; gap: 16px; position: relative;
+  padding: 0 0 20px 0;
+}
+.setup-step:last-child { padding-bottom: 0; }
+.setup-step::before {
+  content: ''; position: absolute; left: 19px; top: 40px;
+  width: 2px; height: calc(100% - 40px);
+  background: var(--c-border2);
+}
+.setup-step:last-child::before { display: none; }
+.setup-step-num {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700; font-family: var(--font-mono);
+  background: var(--c-surface2); border: 2px solid var(--c-border2);
+  color: var(--c-text3); transition: all 0.2s; position: relative; z-index: 1;
+}
+.setup-step.step-done .setup-step-num { background: var(--c-green-bg); border-color: var(--c-green); color: var(--c-green-text); }
+.setup-step.step-active .setup-step-num { background: var(--c-blue-bg); border-color: var(--c-accent); color: var(--c-accent); }
+.setup-step-body { flex: 1; padding-top: 8px; }
+.setup-step-title { font-size: 13px; font-weight: 600; color: var(--c-text); margin-bottom: 10px; }
+
+/* ===== NG TABLE ===== */
+.ng-entry {
+  background: var(--c-surface2); border: 1.5px solid var(--c-border2);
+  border-radius: var(--radius-md); padding: 14px; margin-bottom: 10px;
+  position: relative; animation: fadeUp 0.3s ease;
+}
+.ng-entry-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+.ng-entry-num {
+  font-size: 11px; font-weight: 700; color: var(--c-accent);
+  font-family: var(--font-mono); letter-spacing: 0.05em;
+  background: var(--c-blue-bg); padding: 3px 8px; border-radius: 6px;
+}
+.ng-del-btn {
+  width: 28px; height: 28px; border-radius: 7px; border: none;
+  background: var(--c-red-bg); color: var(--c-red-text); cursor: pointer;
+  display: flex; align-items: center; justify-content: center; font-size: 14px;
+  transition: all 0.2s;
+}
+.ng-del-btn:hover { background: var(--c-red); color: white; transform: scale(1.05); }
+
+/* ===== DOWNTIME ENTRY ===== */
+.dt-entry {
+  background: var(--c-surface2); border: 1.5px solid var(--c-border2);
+  border-radius: var(--radius-md); padding: 14px; margin-bottom: 10px;
+  position: relative; animation: fadeUp 0.3s ease;
+}
+
+/* ===== SUMMARY PREVIEW ===== */
+.summary-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; border-radius: var(--radius-sm);
+  border-bottom: 1px solid var(--c-border);
+}
+.summary-row:last-child { border-bottom: none; }
+.summary-row:hover { background: var(--c-surface2); }
+.summary-key { font-size: 12px; color: var(--c-text2); font-weight: 500; }
+.summary-val { font-size: 13px; color: var(--c-text); font-weight: 600; font-family: var(--font-mono); }
+
+/* ===== FOOTER ===== */
+.dash-footer {
+  text-align: center; padding: 20px 24px;
+  font-size: 11px; color: var(--c-text3); border-top: 1px solid var(--c-border);
+  margin-top: 40px; font-family: var(--font-mono);
+}
+
+/* ===== LOADING STATE ===== */
+.btn-loading { position: relative; pointer-events: none; }
+.btn-loading::after {
+  content: ''; position: absolute; width: 14px; height: 14px;
+  border: 2px solid rgba(255,255,255,0.4); border-top-color: white;
+  border-radius: 50%; animation: spin 0.7s linear infinite;
+  top: 50%; right: 12px; transform: translateY(-50%);
+}
+@keyframes spin { to { transform: translateY(-50%) rotate(360deg); } }
+
+/* ===== EMPTY STATE ===== */
+.empty-state {
+  text-align: center; padding: 40px 20px;
+  color: var(--c-text3); font-size: 13px;
+}
+.empty-state .empty-icon { font-size: 32px; margin-bottom: 10px; }
+.empty-state .empty-text { color: var(--c-text2); font-weight: 500; }
+.empty-state .empty-sub { font-size: 12px; margin-top: 4px; }
+
+/* Checkbox group */
+.checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+.checkbox-item { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+.checkbox-item input[type=checkbox] { width: 16px; height: 16px; accent-color: var(--c-accent); cursor: pointer; }
+.checkbox-item .cb-label { font-size: 13px; color: var(--c-text2); }
+
+/* Color accents for lines */
+.line-a { color: #1A6EFA; }
+.line-b { color: #00B37D; }
+.line-c { color: #7C3AED; }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="header">
+  <div class="header-inner">
+    <div class="logo-area">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <div class="logo-text">
+        <div class="title">PT. Chao Long Motor Parts</div>
+        <div class="subtitle">PRODUCTION INPUT FORMS</div>
+      </div>
+    </div>
+    <div class="header-right">
+      <div id="roleIndicator" class="role-badge role-admin">
+        <div class="role-dot"></div>
+        <span id="roleLabel">Super Admin</span>
+      </div>
+      <div class="clock-area">
+        <div class="clock-time" id="clock">00:00:00</div>
+        <div class="clock-date" id="clock-date">–</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== ROLE SWITCHER ===== -->
+<div class="role-switcher">
+  <div class="role-switcher-inner">
+    <span class="rs-label">Mode:</span>
+    <button class="rs-btn active-purple" id="btn-admin" onclick="switchRole('admin')">
+      <div class="rs-icon">🔐</div> Super Admin — Master Data
+    </button>
+    <button class="rs-btn" id="btn-leader" onclick="switchRole('leader')">
+      <div class="rs-icon">📋</div> Leader Produksi — Input Harian
+    </button>
+    <div style="margin-left:auto;">
+      <a href="#" style="font-size:12px;color:var(--c-accent);text-decoration:none;font-weight:500;">← Kembali ke Dashboard</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE: SUPER ADMIN ===== -->
+<div class="page active" id="page-admin">
+<main class="content">
+
+  <!-- Hero -->
+  <div class="page-hero hero-purple">
+    <div class="hero-inner">
+      <div class="hero-icon">🔐</div>
+      <div>
+        <div class="hero-title">Master Data — Super Admin</div>
+        <div class="hero-sub">Konfigurasi lini, produk, operator, proses, & target produksi</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sub Nav -->
+  <div class="sub-nav" id="admin-subnav">
+    <button class="sub-btn active-purple" onclick="switchAdminTab('line')">🏭 Lini Produksi</button>
+    <button class="sub-btn" onclick="switchAdminTab('product')">📦 Master Produk</button>
+    <button class="sub-btn" onclick="switchAdminTab('operator')">👤 Operator</button>
+    <button class="sub-btn" onclick="switchAdminTab('process')">⚙️ Proses & Sub-Proses</button>
+    <button class="sub-btn" onclick="switchAdminTab('target')">🎯 Target Produksi</button>
+    <button class="sub-btn" onclick="switchAdminTab('shift')">🕐 Konfigurasi Shift</button>
+  </div>
+
+  <!-- ===== TAB: LINI PRODUKSI ===== -->
+  <div class="sub-panel active" id="tab-line">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <div class="card-title-icon icon-purple">🏭</div>
+            Tambah / Edit Lini Produksi
+          </div>
+          <span class="badge badge-purple">Master Data</span>
+        </div>
+        <div class="form-grid form-grid-2">
+          <div class="form-field">
+            <label class="form-label">Kode Lini <span class="req">*</span></label>
+            <div class="input-prefix">
+              <span class="prefix-icon">🏷️</span>
+              <input class="form-input form-input-mono" placeholder="LINE-A" maxlength="10">
+            </div>
+            <div class="form-hint">Contoh: LINE-A, LINE-B, SMT-01</div>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Nama Lini <span class="req">*</span></label>
+            <input class="form-input" placeholder="Contoh: Assembly Line A">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Kapasitas / Jam <span class="req">*</span></label>
+            <div class="input-unit">
+              <input class="form-input form-input-mono" type="number" placeholder="150" min="1">
+              <span class="unit-tag">pcs</span>
+            </div>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Jumlah Operator</label>
+            <div class="input-unit">
+              <input class="form-input form-input-mono" type="number" placeholder="8" min="1">
+              <span class="unit-tag">org</span>
+            </div>
+          </div>
+          <div class="form-field span-2">
+            <label class="form-label">Deskripsi / Keterangan</label>
+            <textarea class="form-textarea" placeholder="Deskripsi singkat lini produksi..." rows="2"></textarea>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Status Lini</label>
+            <div class="toggle-group" id="line-status-grp">
+              <div class="toggle-opt selected-green" onclick="selectToggle('line-status-grp', this)"><div class="toggle-dot"></div>Aktif</div>
+              <div class="toggle-opt" onclick="selectToggle('line-status-grp', this)"><div class="toggle-dot"></div>Maintenance</div>
+              <div class="toggle-opt" onclick="selectToggle('line-status-grp', this)"><div class="toggle-dot"></div>Non-Aktif</div>
+            </div>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Shift Operasional</label>
+            <div class="toggle-group" id="line-shift-grp">
+              <div class="toggle-opt selected" onclick="selectToggle('line-shift-grp', this)"><div class="toggle-dot"></div>Shift 1</div>
+              <div class="toggle-opt" onclick="selectToggle('line-shift-grp', this)"><div class="toggle-dot"></div>Shift 2</div>
+              <div class="toggle-opt" onclick="selectToggle('line-shift-grp', this)"><div class="toggle-dot"></div>Keduanya</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-ghost btn-sm">Reset</button>
+          <button class="btn btn-purple btn-sm" onclick="saveForm(this, '✅ Data lini berhasil disimpan')">💾 Simpan Lini</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <div class="card-title-icon icon-blue">📋</div>
+            Daftar Lini Terdaftar
+          </div>
+          <button class="btn btn-ghost btn-sm">+ Baru</button>
+        </div>
+        <table class="table-form">
+          <thead>
+            <tr>
+              <th>Kode</th><th>Nama Lini</th><th>Kapasitas</th><th>Status</th><th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-blue" style="font-family:var(--font-mono);font-size:10px;">LINE-A</span></td>
+              <td style="font-size:13px;font-weight:500;">Assembly Line A</td>
+              <td style="font-family:var(--font-mono);font-size:12px;text-align:center;">150 pcs/j</td>
+              <td><span class="badge badge-green">Aktif</span></td>
+              <td><button class="btn btn-ghost btn-sm" style="font-size:11px;padding:4px 8px;">✏️ Edit</button></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-blue" style="font-family:var(--font-mono);font-size:10px;">LINE-B</span></td>
+              <td style="font-size:13px;font-weight:500;">Assembly Line B</td>
+              <td style="font-family:var(--font-mono);font-size:12px;text-align:center;">140 pcs/j</td>
+              <td><span class="badge badge-green">Aktif</span></td>
+              <td><button class="btn btn-ghost btn-sm" style="font-size:11px;padding:4px 8px;">✏️ Edit</button></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-blue" style="font-family:var(--font-mono);font-size:10px;">SMT-01</span></td>
+              <td style="font-size:13px;font-weight:500;">SMT / PCB Assembly</td>
+              <td style="font-family:var(--font-mono);font-size:12px;text-align:center;">200 pcs/j</td>
+              <td><span class="badge badge-amber">Maintenance</span></td>
+              <td><button class="btn btn-ghost btn-sm" style="font-size:11px;padding:4px 8px;">✏️ Edit</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: MASTER PRODUK ===== -->
+  <div class="sub-panel" id="tab-product">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><div class="card-title-icon icon-purple">📦</div>Data Master Produk</div>
+        <span class="badge badge-purple">Master Data</span>
+      </div>
+      <div class="form-grid form-grid-3">
+        <div class="form-field">
+          <label class="form-label">Kode Produk <span class="req">*</span></label>
+          <input class="form-input form-input-mono" placeholder="MCU-001">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Nama Produk <span class="req">*</span></label>
+          <input class="form-input" placeholder="Contoh: ECU Motor CB150">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Part Number</label>
+          <input class="form-input form-input-mono" placeholder="38770-KSP-N00">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Customer / Brand</label>
+          <input class="form-input" placeholder="Honda, Yamaha, dll.">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Cycle Time Standard <span class="req">*</span></label>
+          <div class="input-unit">
+            <input class="form-input form-input-mono" type="number" placeholder="24" min="1">
+            <span class="unit-tag">det</span>
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Target Output / Shift <span class="req">*</span></label>
+          <div class="input-unit">
+            <input class="form-input form-input-mono" type="number" placeholder="1200" min="1">
+            <span class="unit-tag">pcs</span>
+          </div>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Lini Produksi</label>
+          <select class="form-select">
+            <option value="">– Pilih Lini –</option>
+            <option>LINE-A — Assembly Line A</option>
+            <option>LINE-B — Assembly Line B</option>
+            <option>SMT-01 — SMT / PCB Assembly</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Kategori Produk</label>
+          <select class="form-select">
+            <option>ECU / MCU</option>
+            <option>Sensor</option>
+            <option>Wiring Harness</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">NG Rate Batas Atas <span class="hint">(Alert)</span></label>
+          <div class="input-unit">
+            <input class="form-input form-input-mono" type="number" placeholder="2.0" step="0.1" min="0">
+            <span class="unit-tag">%</span>
+          </div>
+        </div>
+        <div class="form-field span-3">
+          <label class="form-label">Keterangan Produk</label>
+          <textarea class="form-textarea" placeholder="Spesifikasi khusus, notes QC, dll." rows="2"></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-ghost btn-sm">Reset</button>
+        <button class="btn btn-ghost btn-sm">Import Excel</button>
+        <button class="btn btn-purple btn-sm" onclick="saveForm(this, '✅ Produk berhasil disimpan')">💾 Simpan Produk</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: OPERATOR ===== -->
+  <div class="sub-panel" id="tab-operator">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><div class="card-title-icon icon-purple">👤</div>Data Operator Baru</div>
+        </div>
+        <div class="form-grid form-grid-2">
+          <div class="form-field">
+            <label class="form-label">NIK / ID Karyawan <span class="req">*</span></label>
+            <input class="form-input form-input-mono" placeholder="CL-2024-001">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Nama Lengkap <span class="req">*</span></label>
+            <input class="form-input" placeholder="Nama operator">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Inisial <span class="req">*</span></label>
+            <input class="form-input form-input-mono" placeholder="AF" maxlength="3" style="text-transform:uppercase;">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Tanggal Bergabung</label>
+            <input class="form-input" type="date">
+          </div>
+          <div class="form-field">
+            <label class="form-label">Lini Penugasan <span class="req">*</span></label>
+            <select class="form-select">
+              <option value="">– Pilih Lini –</option>
+              <option>LINE-A</option><option>LINE-B</option><option>SMT-01</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label class="form-label">Shift Default</label>
+            <select class="form-select">
+              <option>Shift 1 (07:00–15:00)</option>
+              <option>Shift 2 (15:00–23:00)</option>
+            </select>
+          </div>
+          <div class="form-field span-2">
+            <label class="form-label">Jabatan / Posisi</label>
+            <select class="form-select">
+              <option>Operator Produksi</option>
+              <option>Operator Senior</option>
+              <option>Leader Line</option>
+              <option>Teknisi Maintenance</option>
+              <option>QC Inspector</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-divider" style="margin-top:16px;">Skill Matrix Awal</div>
+        <div style="overflow-x:auto;">
+          <table class="table-form" style="min-width:600px;">
+            <thead>
+              <tr>
+                <th style="min-width:160px;">Sub-Proses</th>
+                <th>Level Skill (0–4)</th>
+                <th>Sertifikat</th>
+                <th>W/I</th>
+              </tr>
+            </thead>
+            <tbody id="skill-input-tbody">
+              <!-- Rows injected by JS -->
+            </tbody>
+          </table>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-ghost btn-sm">Reset</button>
+          <button class="btn btn-purple btn-sm" onclick="saveForm(this, '✅ Operator berhasil didaftarkan')">💾 Simpan Operator</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><div class="card-title-icon icon-blue">📋</div>Daftar Operator Aktif</div>
+          <span class="badge badge-green" id="op-count-badge">8 Aktif</span>
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
+          <div class="input-prefix" style="flex:1;min-width:140px;">
+            <span class="prefix-icon" style="font-size:12px;">🔍</span>
+            <input class="form-input" id="op-search-input" style="height:36px;font-size:12px;" placeholder="Cari nama / NIK..."
+              oninput="filterOpList()">
+          </div>
+          <select class="form-select" id="op-filter-line" style="height:36px;width:100px;font-size:12px;" onchange="filterOpList()">
+            <option value="">Semua</option>
+            <option value="LINE-A">LINE-A</option>
+            <option value="LINE-B">LINE-B</option>
+            <option value="SMT-01">SMT-01</option>
+          </select>
+          <select class="form-select" id="op-filter-status" style="height:36px;width:110px;font-size:12px;" onchange="filterOpList()">
+            <option value="">Semua Status</option>
+            <option value="Aktif">Aktif</option>
+            <option value="Training">Training</option>
+          </select>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="table-form">
+            <thead><tr><th>ID</th><th>Nama</th><th>Lini</th><th>Avg Skill</th><th>Status</th><th>Aksi</th></tr></thead>
+            <tbody id="op-list-tbody"></tbody>
+          </table>
+        </div>
+        <div id="op-empty" class="empty-state" style="display:none;padding:20px;">
+          <div class="empty-icon">🔍</div>
+          <div class="empty-text">Tidak ada operator ditemukan</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: PROSES ===== -->
+  <div class="sub-panel" id="tab-process">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><div class="card-title-icon icon-purple">⚙️</div>Master Proses & Sub-Proses</div>
+        <span class="badge badge-purple">Master Data</span>
+      </div>
+      <div class="form-grid form-grid-2" style="margin-bottom:16px;">
+        <div class="form-field">
+          <label class="form-label">Nama Proses Utama <span class="req">*</span></label>
+          <input class="form-input" placeholder="Contoh: BT Burning, MCU Flash, Final FI...">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Kode Proses <span class="req">*</span></label>
+          <input class="form-input form-input-mono" placeholder="PRO-001">
+        </div>
+        <div class="form-field">
+          <label class="form-label">Lini Terkait</label>
+          <select class="form-select">
+            <option>Semua Lini</option><option>LINE-A</option><option>LINE-B</option><option>SMT-01</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Tipe Proses</label>
+          <select class="form-select">
+            <option>Produksi</option><option>QC / Inspeksi</option><option>Finishing</option><option>Packaging</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-divider">Sub-Proses</div>
+      <div id="subprocess-list">
+        <div style="display:grid;grid-template-columns:1fr 1fr 140px 120px auto;gap:10px;align-items:end;margin-bottom:10px;">
+          <div>
+            <div class="form-label" style="margin-bottom:6px;">Nama Sub-Proses</div>
+            <input class="form-input" placeholder="BT Beta Fixture">
+          </div>
+          <div>
+            <div class="form-label" style="margin-bottom:6px;">Kode</div>
+            <input class="form-input form-input-mono" placeholder="SP-001">
+          </div>
+          <div>
+            <div class="form-label" style="margin-bottom:6px;">Cycle Time</div>
+            <div class="input-unit"><input class="form-input form-input-mono" type="number" placeholder="24"><span class="unit-tag">det</span></div>
+          </div>
+          <div>
+            <div class="form-label" style="margin-bottom:6px;">Urutan</div>
+            <input class="form-input form-input-mono" type="number" placeholder="1" min="1">
+          </div>
+          <div style="padding-bottom:0;">
+            <div class="form-label" style="margin-bottom:6px;">&nbsp;</div>
+            <button class="btn btn-ghost btn-sm" onclick="addSubprocess()">+ Tambah Baris</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-ghost btn-sm">Reset</button>
+        <button class="btn btn-purple btn-sm" onclick="saveForm(this, '✅ Proses berhasil disimpan')">💾 Simpan Proses</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: TARGET ===== -->
+  <div class="sub-panel" id="tab-target">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><div class="card-title-icon icon-purple">🎯</div>Setup Target Produksi</div>
+        <span class="badge badge-purple">Master Data</span>
+      </div>
+      <div class="form-grid form-grid-3" style="margin-bottom:16px;">
+        <div class="form-field">
+          <label class="form-label">Lini <span class="req">*</span></label>
+          <select class="form-select">
+            <option>– Pilih –</option><option>LINE-A</option><option>LINE-B</option><option>SMT-01</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Produk <span class="req">*</span></label>
+          <select class="form-select">
+            <option>– Pilih –</option><option>MCU-001 — ECU Motor CB150</option><option>MCU-002 — ECU Motor Beat</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Periode Berlaku <span class="req">*</span></label>
+          <input class="form-input" type="month">
+        </div>
+      </div>
+
+      <div class="form-divider">Target Per Shift</div>
+      <div style="overflow-x:auto;">
+        <table class="table-form">
+          <thead>
+            <tr>
+              <th>Shift</th><th>Target/Jam</th><th>Target/Shift</th><th>OEE Target</th><th>NG Limit</th><th>Catatan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-blue">Shift 1</span><div style="font-size:10px;color:var(--c-text3);margin-top:3px;">07:00–15:00</div></td>
+              <td><div class="input-unit" style="width:90px;"><input class="table-form cell-input form-input-mono" type="number" value="150" style="text-align:center;"><span class="unit-tag" style="right:8px;">pcs</span></div></td>
+              <td><div class="input-unit" style="width:100px;"><input class="table-form cell-input form-input-mono" type="number" value="1200" style="text-align:center;"><span class="unit-tag" style="right:8px;">pcs</span></div></td>
+              <td><div class="input-unit" style="width:80px;"><input class="table-form cell-input form-input-mono" type="number" value="85" style="text-align:center;"><span class="unit-tag" style="right:8px;">%</span></div></td>
+              <td><div class="input-unit" style="width:80px;"><input class="table-form cell-input form-input-mono" type="number" value="2.0" step="0.1" style="text-align:center;"><span class="unit-tag" style="right:8px;">%</span></div></td>
+              <td><input class="table-form cell-input" placeholder="–"></td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-purple">Shift 2</span><div style="font-size:10px;color:var(--c-text3);margin-top:3px;">15:00–23:00</div></td>
+              <td><div class="input-unit" style="width:90px;"><input class="table-form cell-input form-input-mono" type="number" value="150" style="text-align:center;"><span class="unit-tag" style="right:8px;">pcs</span></div></td>
+              <td><div class="input-unit" style="width:100px;"><input class="table-form cell-input form-input-mono" type="number" value="1200" style="text-align:center;"><span class="unit-tag" style="right:8px;">pcs</span></div></td>
+              <td><div class="input-unit" style="width:80px;"><input class="table-form cell-input form-input-mono" type="number" value="82" style="text-align:center;"><span class="unit-tag" style="right:8px;">%</span></div></td>
+              <td><div class="input-unit" style="width:80px;"><input class="table-form cell-input form-input-mono" type="number" value="2.0" step="0.1" style="text-align:center;"><span class="unit-tag" style="right:8px;">%</span></div></td>
+              <td><input class="table-form cell-input" placeholder="–"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-ghost btn-sm">Reset</button>
+        <button class="btn btn-purple btn-sm" onclick="saveForm(this, '✅ Target produksi berhasil disimpan')">💾 Simpan Target</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: SHIFT CONFIG ===== -->
+  <div class="sub-panel" id="tab-shift">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><div class="card-title-icon icon-purple">🕐</div>Konfigurasi Waktu Shift</div>
+      </div>
+      <div id="shift-config">
+        <!-- Shift 1 -->
+        <div style="background:var(--c-surface2);border:1.5px solid var(--c-border2);border-radius:var(--radius-md);padding:16px;margin-bottom:12px;">
+          <div style="font-size:12px;font-weight:700;color:var(--c-accent);letter-spacing:0.05em;margin-bottom:12px;">SHIFT 1</div>
+          <div class="form-grid form-grid-3">
+            <div class="form-field"><label class="form-label">Jam Mulai</label><input class="form-input" type="time" value="07:00"></div>
+            <div class="form-field"><label class="form-label">Jam Selesai</label><input class="form-input" type="time" value="15:00"></div>
+            <div class="form-field"><label class="form-label">Waktu Istirahat</label><input class="form-input" type="time" value="12:00"></div>
+            <div class="form-field"><label class="form-label">Durasi Istirahat</label><div class="input-unit"><input class="form-input form-input-mono" type="number" value="60"><span class="unit-tag">mnt</span></div></div>
+            <div class="form-field"><label class="form-label">Waktu Kerja Efektif</label><div class="input-unit"><input class="form-input form-input-mono" value="420" readonly style="background:var(--c-bg);color:var(--c-text2);"><span class="unit-tag">mnt</span></div></div>
+            <div class="form-field"><label class="form-label">Jam Rencana Produksi</label><div class="input-unit"><input class="form-input form-input-mono" value="7.0" readonly style="background:var(--c-bg);color:var(--c-text2);"><span class="unit-tag">jam</span></div></div>
+          </div>
+          <div style="margin-top:12px;">
+            <div class="form-label" style="margin-bottom:8px;">Jam Produksi Per Slot</div>
+            <div class="form-grid form-grid-4" style="gap:8px;">
+              <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:10px;color:var(--c-text3);font-family:var(--font-mono);">07:00–08:00</span><input class="form-input form-input-mono" style="height:34px;" placeholder="Aktif"></div>
+              <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:10px;color:var(--c-text3);font-family:var(--font-mono);">08:00–09:00</span><input class="form-input form-input-mono" style="height:34px;" placeholder="Aktif"></div>
+              <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:10px;color:var(--c-text3);font-family:var(--font-mono);">09:00–10:00</span><input class="form-input form-input-mono" style="height:34px;" placeholder="Aktif"></div>
+              <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:10px;color:var(--c-text3);font-family:var(--font-mono);">10:00–11:00</span><input class="form-input form-input-mono" style="height:34px;" placeholder="Aktif"></div>
+              <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:10px;color:var(--c-text3);font-family:var(--font-mono);">11:00–12:00</span><input class="form-input form-input-mono" style="height:34px;" placeholder="Aktif"></div>
+              <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:10px;color:var(--c-text3);font-family:var(--font-mono);">12:00–13:00</span><input class="form-input form-input-mono" style="height:34px;background:var(--c-amber-bg);border-color:var(--c-amber);" value="ISTIRAHAT" readonly></div>
+              <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:10px;color:var(--c-text3);font-family:var(--font-mono);">13:00–14:00</span><input class="form-input form-input-mono" style="height:34px;" placeholder="Aktif"></div>
+              <div style="display:flex;flex-direction:column;gap:4px;"><span style="font-size:10px;color:var(--c-text3);font-family:var(--font-mono);">14:00–15:00</span><input class="form-input form-input-mono" style="height:34px;" placeholder="Aktif"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn btn-ghost btn-sm">Reset</button>
+        <button class="btn btn-purple btn-sm" onclick="saveForm(this, '✅ Konfigurasi shift berhasil disimpan')">💾 Simpan Konfigurasi</button>
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- ===== PAGE: LEADER PRODUKSI ===== -->
+<div class="page" id="page-leader">
+<main class="content">
+
+  <!-- Hero -->
+  <div class="page-hero hero-blue">
+    <div class="hero-inner">
+      <div class="hero-icon">📋</div>
+      <div>
+        <div class="hero-title">Input Harian — Leader Produksi</div>
+        <div class="hero-sub">Output per jam · NG Report · Downtime · Setup Production Run</div>
+      </div>
+      <div class="hero-actions">
+        <div style="text-align:right;">
+          <div style="font-family:var(--font-mono);font-size:14px;font-weight:600;color:white;" id="leader-clock">00:00</div>
+          <div style="font-size:10px;color:rgba(255,255,255,0.6);" id="leader-date">–</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sub Nav -->
+  <div class="sub-nav" id="leader-subnav">
+    <button class="sub-btn active" onclick="switchLeaderTab('setup')">🚀 Setup Production Run</button>
+    <button class="sub-btn" onclick="switchLeaderTab('output')">📊 Output Per Jam</button>
+    <button class="sub-btn" onclick="switchLeaderTab('ng')">⚠️ Laporan NG</button>
+    <button class="sub-btn" onclick="switchLeaderTab('downtime')">⏸️ Downtime</button>
+    <button class="sub-btn" onclick="switchLeaderTab('summary')">📈 Ringkasan Shift</button>
+  </div>
+
+  <!-- ===== TAB: SETUP PRODUCTION RUN ===== -->
+  <div class="sub-panel active" id="tab-setup">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><div class="card-title-icon icon-blue">🚀</div>Setup Awal Production Run</div>
+          <span class="badge badge-blue">Pre-Production</span>
+        </div>
+
+        <!-- Step Nav -->
+        <div class="step-nav" style="margin-bottom:20px;">
+          <div class="step-item active" id="pstep-1" onclick="goSetupStep(1)">
+            <div class="step-num">1</div>
+            <div class="step-info"><div class="step-label">Step 01</div><div class="step-name">Info Dasar</div></div>
+          </div>
+          <div class="step-item" id="pstep-2" onclick="goSetupStep(2)">
+            <div class="step-num">2</div>
+            <div class="step-info"><div class="step-label">Step 02</div><div class="step-name">Checklist</div></div>
+          </div>
+          <div class="step-item" id="pstep-3" onclick="goSetupStep(3)">
+            <div class="step-num">3</div>
+            <div class="step-info"><div class="step-label">Step 03</div><div class="step-name">Penugasan</div></div>
+          </div>
+          <div class="step-item" id="pstep-4" onclick="goSetupStep(4)">
+            <div class="step-num">4</div>
+            <div class="step-info"><div class="step-label">Step 04</div><div class="step-name">Konfirmasi</div></div>
+          </div>
+        </div>
+
+        <!-- Step 1: Info Dasar -->
+        <div id="setup-step-1">
+          <div class="form-grid form-grid-2">
+            <div class="form-field">
+              <label class="form-label">Lini Produksi <span class="req">*</span></label>
+              <select class="form-select">
+                <option>– Pilih –</option><option>LINE-A — Assembly Line A</option><option>LINE-B — Assembly Line B</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Shift <span class="req">*</span></label>
+              <div class="toggle-group" id="setup-shift-grp">
+                <div class="toggle-opt selected" onclick="selectToggle('setup-shift-grp',this)"><div class="toggle-dot"></div>Shift 1</div>
+                <div class="toggle-opt" onclick="selectToggle('setup-shift-grp',this)"><div class="toggle-dot"></div>Shift 2</div>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Tanggal Produksi <span class="req">*</span></label>
+              <input class="form-input" type="date" id="setup-date">
+            </div>
+            <div class="form-field">
+              <label class="form-label">Jam Mulai Aktual</label>
+              <input class="form-input" type="time" id="setup-start-time">
+            </div>
+            <div class="form-field span-2">
+              <label class="form-label">Produk Yang Diproduksi <span class="req">*</span></label>
+              <select class="form-select">
+                <option>– Pilih Produk –</option><option>MCU-001 — ECU Motor CB150 (Target: 150 pcs/jam)</option><option>MCU-002 — ECU Motor Beat (Target: 140 pcs/jam)</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Rencana Qty Produksi <span class="req">*</span></label>
+              <div class="input-unit">
+                <input class="form-input form-input-mono" type="number" placeholder="1200" min="1">
+                <span class="unit-tag">pcs</span>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="form-label">Nama Leader (Anda) <span class="req">*</span></label>
+              <input class="form-input" placeholder="Nama leader shift">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-primary btn-sm" onclick="nextSetupStep(1)">Lanjut →</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Checklist Pre-Production -->
+        <div id="setup-step-2" style="display:none;">
+          <div class="setup-timeline">
+            <div class="setup-step" id="ss1">
+              <div class="setup-step-num">1</div>
+              <div class="setup-step-body">
+                <div class="setup-step-title">5S & Kebersihan Area Kerja</div>
+                <div class="checkbox-group">
+                  <label class="checkbox-item"><input type="checkbox" onchange="checkSetupItem(this)"><span class="cb-label">Area bersih & tertata (Seiri, Seiton)</span></label>
+                  <label class="checkbox-item"><input type="checkbox" onchange="checkSetupItem(this)"><span class="cb-label">Tidak ada material sisa shift sebelumnya</span></label>
+                  <label class="checkbox-item"><input type="checkbox" onchange="checkSetupItem(this)"><span class="cb-label">Label & marking area sesuai standar</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="setup-step" id="ss2">
+              <div class="setup-step-num">2</div>
+              <div class="setup-step-body">
+                <div class="setup-step-title">Kondisi Mesin & Fixture</div>
+                <div class="checkbox-group">
+                  <label class="checkbox-item"><input type="checkbox" onchange="checkSetupItem(this)"><span class="cb-label">Fixture sudah dikalibrasi & diverifikasi</span></label>
+                  <label class="checkbox-item"><input type="checkbox" onchange="checkSetupItem(this)"><span class="cb-label">Parameter mesin sesuai work instruction</span></label>
+                  <label class="checkbox-item"><input type="checkbox" onchange="checkSetupItem(this)"><span class="cb-label">Tidak ada warning/alarm pada mesin</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="setup-step" id="ss3">
+              <div class="setup-step-num">3</div>
+              <div class="setup-step-body">
+                <div class="setup-step-title">Verifikasi Material</div>
+                <div class="checkbox-group">
+                  <label class="checkbox-item"><input type="checkbox" onchange="checkSetupItem(this)"><span class="cb-label">Material sudah tersedia di line sesuai BOM</span></label>
+                  <label class="checkbox-item"><input type="checkbox" onchange="checkSetupItem(this)"><span class="cb-label">Lot number & expired date sudah dicek</span></label>
+                  <label class="checkbox-item"><input type="checkbox" onchange="checkSetupItem(this)"><span class="cb-label">Label produk (R-Mark) sudah tersedia</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="setup-step" id="ss4">
+              <div class="setup-step-num">4</div>
+              <div class="setup-step-body">
+                <div class="setup-step-title">Safety & Dokumen</div>
+                <div class="checkbox-group">
+                  <label class="checkbox-item"><input type="checkbox" onchange="checkSetupItem(this)"><span class="cb-label">APD operator sudah lengkap & sesuai</span></label>
+                  <label class="checkbox-item"><input type="checkbox" onchange="checkSetupItem(this)"><span class="cb-label">Work Instruction (W/I) terpasang di line</span></label>
+                  <label class="checkbox-item"><input type="checkbox" onchange="checkSetupItem(this)"><span class="cb-label">Briefing singkat operator telah dilakukan</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:12px;padding:12px;background:var(--c-surface2);border-radius:var(--radius-md);border:1px solid var(--c-border);">
+            <div style="font-size:11px;color:var(--c-text3);font-weight:600;margin-bottom:6px;">PROGRESS CHECKLIST</div>
+            <div class="progress-wrap"><div class="progress-fill" id="setup-progress" style="width:0%;background:linear-gradient(90deg,var(--c-green),#34D399);"></div></div>
+            <div style="font-size:11px;color:var(--c-text2);margin-top:6px;font-family:var(--font-mono);" id="setup-check-count">0 / 12 item selesai</div>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-ghost btn-sm" onclick="goSetupStep(1)">← Kembali</button>
+            <button class="btn btn-primary btn-sm" onclick="nextSetupStep(2)">Lanjut →</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Penugasan Operator -->
+        <div id="setup-step-3" style="display:none;">
+          <div style="overflow-x:auto;">
+            <table class="table-form">
+              <thead>
+                <tr>
+                  <th>Sub-Proses</th><th>Operator Bertugas</th><th>Skill Level</th><th>W/I</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="font-size:12px;">BT Burning Beta</td><td><select class="form-select" style="height:34px;font-size:12px;"><option>Ahmad Fauzi (Skill:4)</option><option>Siti Rahayu (Skill:3)</option></select></td><td><span class="badge badge-purple" style="font-size:10px;">4 — Expert</span></td><td><span class="badge badge-green" style="font-size:10px;">PASS</span></td></tr>
+                <tr><td style="font-size:12px;">MCU Flash</td><td><select class="form-select" style="height:34px;font-size:12px;"><option>Dewi Lestari (Skill:4)</option><option>Ahmad Fauzi (Skill:2)</option></select></td><td><span class="badge badge-purple" style="font-size:10px;">4 — Expert</span></td><td><span class="badge badge-green" style="font-size:10px;">PASS</span></td></tr>
+                <tr><td style="font-size:12px;">Final FI</td><td><select class="form-select" style="height:34px;font-size:12px;"><option>Fitriani H. (Skill:4)</option><option>Hani Susanti (Skill:3)</option></select></td><td><span class="badge badge-purple" style="font-size:10px;">4 — Expert</span></td><td><span class="badge badge-green" style="font-size:10px;">PASS</span></td></tr>
+                <tr><td style="font-size:12px;">Visual & Pack</td><td><select class="form-select" style="height:34px;font-size:12px;"><option>Hani Susanti (Skill:3)</option><option>Budi Santoso (Skill:2)</option></select></td><td><span class="badge badge-green" style="font-size:10px;">3 — Terampil</span></td><td><span class="badge badge-green" style="font-size:10px;">PASS</span></td></tr>
+                <tr><td style="font-size:12px;">Soldering</td><td><select class="form-select" style="height:34px;font-size:12px;"><option>Budi Santoso (Skill:4)</option></select></td><td><span class="badge badge-green" style="font-size:10px;">4 — Expert</span></td><td><span class="badge badge-amber" style="font-size:10px;">FAIL</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-ghost btn-sm" onclick="goSetupStep(2)">← Kembali</button>
+            <button class="btn btn-primary btn-sm" onclick="nextSetupStep(3)">Lanjut →</button>
+          </div>
+        </div>
+
+        <!-- Step 4: Konfirmasi -->
+        <div id="setup-step-4" style="display:none;">
+          <div style="background:var(--c-green-bg);border:1.5px solid rgba(0,179,125,0.2);border-radius:var(--radius-md);padding:16px;margin-bottom:16px;">
+            <div style="font-size:13px;font-weight:600;color:var(--c-green-text);margin-bottom:12px;">📋 Ringkasan Setup</div>
+            <div class="summary-row"><span class="summary-key">Lini</span><span class="summary-val">LINE-A</span></div>
+            <div class="summary-row"><span class="summary-key">Produk</span><span class="summary-val">MCU-001</span></div>
+            <div class="summary-row"><span class="summary-key">Shift</span><span class="summary-val">Shift 1</span></div>
+            <div class="summary-row"><span class="summary-key">Rencana Qty</span><span class="summary-val">1,200 pcs</span></div>
+            <div class="summary-row"><span class="summary-key">Checklist</span><span class="summary-val" style="color:var(--c-green);">✓ Semua Clear</span></div>
+            <div class="summary-row"><span class="summary-key">Operator</span><span class="summary-val">5 Penugasan</span></div>
+          </div>
+          <div class="form-field" style="margin-bottom:12px;">
+            <label class="form-label">Catatan / Kondisi Khusus</label>
+            <textarea class="form-textarea" placeholder="Kondisi khusus yang perlu diperhatikan saat run ini..." rows="3"></textarea>
+          </div>
+          <div class="form-actions">
+            <button class="btn btn-ghost btn-sm" onclick="goSetupStep(3)">← Kembali</button>
+            <button class="btn btn-green btn-sm" onclick="startProduction(this)">🚀 Mulai Produksi</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: Status Panel -->
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="card" style="background:linear-gradient(135deg,#0F2044,#1A3366);border-color:rgba(26,110,250,0.2);">
+          <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:16px;">Status Shift Aktif</div>
+          <div style="display:flex;flex-direction:column;gap:12px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:rgba(255,255,255,0.6);">Lini</span>
+              <span style="font-family:var(--font-mono);font-size:14px;font-weight:600;color:white;">LINE-A</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:rgba(255,255,255,0.6);">Status</span>
+              <span style="background:rgba(0,179,125,0.2);color:#4ADE80;padding:3px 10px;border-radius:99px;font-size:11px;font-weight:700;">● RUNNING</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:rgba(255,255,255,0.6);">Durasi Produksi</span>
+              <span id="prod-timer" style="font-family:var(--font-mono);font-size:13px;font-weight:600;color:#FCD34D;">0j 00m 00d</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;">
+              <span style="font-size:12px;color:rgba(255,255,255,0.6);">Output (hari ini)</span>
+              <span style="font-family:var(--font-mono);font-size:20px;font-weight:600;color:#60A5FA;">855 <span style="font-size:13px;color:rgba(255,255,255,0.4);">/ 1200</span></span>
+            </div>
+            <div style="height:6px;background:rgba(255,255,255,0.1);border-radius:99px;overflow:hidden;">
+              <div style="width:71.25%;height:100%;background:linear-gradient(90deg,#1A6EFA,#60A5FA);border-radius:99px;"></div>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span style="font-size:11px;color:rgba(255,255,255,0.4);">71.25% dari target</span>
+              <span style="font-size:11px;color:rgba(255,255,255,0.4);">345 pcs remaining</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" style="margin-bottom:12px;">
+            <div class="card-title"><div class="card-title-icon icon-amber">⚡</div>Quick Actions</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <button class="btn btn-ghost" style="justify-content:flex-start;width:100%;" onclick="switchLeaderTab('output')">📊 Input Output Per Jam</button>
+            <button class="btn btn-ghost" style="justify-content:flex-start;width:100%;" onclick="switchLeaderTab('ng')">⚠️ Lapor NG Baru</button>
+            <button class="btn btn-ghost" style="justify-content:flex-start;width:100%;" onclick="switchLeaderTab('downtime')">⏸️ Catat Downtime</button>
+            <button class="btn btn-ghost" style="justify-content:flex-start;width:100%;" onclick="switchLeaderTab('summary')">📈 Lihat Ringkasan</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: OUTPUT PER JAM ===== -->
+  <div class="sub-panel" id="tab-output">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><div class="card-title-icon icon-blue">📊</div>Input Output Produksi Per Jam</div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span class="badge badge-blue">LINE-A · Shift 1</span>
+          <span class="badge badge-gray">Target: 150 pcs/jam</span>
+        </div>
+      </div>
+
+      <div style="overflow-x:auto;">
+        <table class="hourly-table" id="hourly-table">
+          <thead>
+            <tr>
+              <th style="width:80px;">Jam</th>
+              <th>Output Aktual</th>
+              <th>Target</th>
+              <th>Selisih</th>
+              <th>Status</th>
+              <th>NG (jam ini)</th>
+              <th>Downtime (mnt)</th>
+              <th style="min-width:160px;">Keterangan</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="hourly-tbody">
+            <!-- Rows injected by JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Hourly Summary -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:16px;padding-top:16px;border-top:1px solid var(--c-border);">
+        <div style="text-align:center;padding:12px;background:var(--c-blue-bg);border-radius:var(--radius-md);">
+          <div style="font-size:10px;color:var(--c-blue-text);font-weight:700;letter-spacing:0.07em;text-transform:uppercase;">Total Output</div>
+          <div style="font-family:var(--font-mono);font-size:24px;font-weight:700;color:var(--c-accent);" id="total-output">855</div>
+          <div style="font-size:11px;color:var(--c-text3);">dari 1200 target</div>
+        </div>
+        <div style="text-align:center;padding:12px;background:var(--c-green-bg);border-radius:var(--radius-md);">
+          <div style="font-size:10px;color:var(--c-green-text);font-weight:700;letter-spacing:0.07em;text-transform:uppercase;">Jam On-Target</div>
+          <div style="font-family:var(--font-mono);font-size:24px;font-weight:700;color:var(--c-green);" id="ok-hours">4</div>
+          <div style="font-size:11px;color:var(--c-text3);">dari 7 jam kerja</div>
+        </div>
+        <div style="text-align:center;padding:12px;background:var(--c-amber-bg);border-radius:var(--radius-md);">
+          <div style="font-size:10px;color:var(--c-amber-text);font-weight:700;letter-spacing:0.07em;text-transform:uppercase;">Total NG</div>
+          <div style="font-family:var(--font-mono);font-size:24px;font-weight:700;color:var(--c-amber);" id="total-ng">18</div>
+          <div style="font-size:11px;color:var(--c-text3);">≈ 2.1% NG rate</div>
+        </div>
+        <div style="text-align:center;padding:12px;background:var(--c-red-bg);border-radius:var(--radius-md);">
+          <div style="font-size:10px;color:var(--c-red-text);font-weight:700;letter-spacing:0.07em;text-transform:uppercase;">Total Downtime</div>
+          <div style="font-family:var(--font-mono);font-size:24px;font-weight:700;color:var(--c-red);" id="total-dt">25</div>
+          <div style="font-size:11px;color:var(--c-text3);">menit</div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-ghost btn-sm">Export CSV</button>
+        <button class="btn btn-primary btn-sm" onclick="saveForm(this, '✅ Data output per jam tersimpan')">💾 Simpan Semua</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: NG REPORT ===== -->
+  <div class="sub-panel" id="tab-ng">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><div class="card-title-icon icon-amber">⚠️</div>Form Input NG (Non-Conforming)</div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span class="badge badge-amber">LINE-A · Shift 1</span>
+          <button class="btn btn-amber btn-sm" onclick="addNgEntry()">+ Tambah NG</button>
+        </div>
+      </div>
+
+      <!-- NG Info Banner -->
+      <div style="background:var(--c-amber-bg);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-md);padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:16px;">💡</span>
+        <div style="font-size:12px;color:var(--c-amber-text);">
+          <strong>Tips:</strong> Input setiap temuan NG secara terpisah untuk analisis pareto yang akurat. Gunakan field "Disposisi" untuk tindak lanjut QC.
+        </div>
+      </div>
+      <div id="ng-entries-container">
+        <!-- NG entries will be injected by JS -->
+      </div>
+
+      <div id="ng-empty" class="empty-state" style="display:none;">
+        <div class="empty-icon">✅</div>
+        <div class="empty-text">Belum ada laporan NG</div>
+        <div class="empty-sub">Klik "Tambah NG" untuk menambahkan laporan</div>
+      </div>
+
+      <!-- NG Summary -->
+      <div style="margin-top:16px;padding:14px;background:var(--c-surface2);border-radius:var(--radius-md);border:1px solid var(--c-border);">
+        <div style="font-size:11px;font-weight:700;color:var(--c-text3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;">Pareto NG Hari Ini</div>
+        <div id="ng-pareto" style="display:flex;flex-direction:column;gap:6px;">
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="font-size:12px;color:var(--c-text2);width:160px;flex-shrink:0;">MCU Short Circuit</div>
+            <div style="flex:1;height:8px;background:var(--c-bg);border-radius:99px;overflow:hidden;"><div style="width:60%;height:100%;background:linear-gradient(90deg,var(--c-red),#FC8181);border-radius:99px;"></div></div>
+            <span style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--c-red);width:30px;text-align:right;">8</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="font-size:12px;color:var(--c-text2);width:160px;flex-shrink:0;">Solder Bridge</div>
+            <div style="flex:1;height:8px;background:var(--c-bg);border-radius:99px;overflow:hidden;"><div style="width:37%;height:100%;background:linear-gradient(90deg,var(--c-amber),#FCD34D);border-radius:99px;"></div></div>
+            <span style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--c-amber);width:30px;text-align:right;">5</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:10px;">
+            <div style="font-size:12px;color:var(--c-text2);width:160px;flex-shrink:0;">Visual Scratch</div>
+            <div style="flex:1;height:8px;background:var(--c-bg);border-radius:99px;overflow:hidden;"><div style="width:22%;height:100%;background:linear-gradient(90deg,#60A5FA,var(--c-accent));border-radius:99px;"></div></div>
+            <span style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--c-accent);width:30px;text-align:right;">3</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-ghost btn-sm">Lihat Riwayat</button>
+        <button class="btn btn-amber btn-sm" onclick="saveForm(this, '✅ Laporan NG berhasil disimpan')">💾 Simpan Laporan NG</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: DOWNTIME ===== -->
+  <div class="sub-panel" id="tab-downtime">
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title"><div class="card-title-icon icon-red">⏸️</div>Form Input Downtime</div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span class="badge badge-red">LINE-A · Shift 1</span>
+          <button class="btn btn-red btn-sm" onclick="addDtEntry()">+ Tambah Downtime</button>
+        </div>
+      </div>
+
+      <!-- DT Info Banner -->
+      <div style="background:var(--c-red-bg);border:1px solid rgba(239,68,68,0.15);border-radius:var(--radius-md);padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:16px;">⏱️</span>
+        <div style="font-size:12px;color:var(--c-red-text);">
+          <strong>Penting:</strong> Isi Jam Mulai & Jam Selesai untuk menghitung durasi otomatis. Downtime ≥ 30 menit wajib dilaporkan ke Supervisor.
+        </div>
+      </div>
+      <div id="dt-entries-container">
+        <!-- DT entries injected by JS -->
+      </div>
+
+      <!-- DT Summary -->
+      <div style="margin-top:16px;padding:14px;background:var(--c-surface2);border-radius:var(--radius-md);border:1px solid var(--c-border);">
+        <div style="font-size:11px;font-weight:700;color:var(--c-text3);letter-spacing:0.06em;text-transform:uppercase;margin-bottom:10px;">Ringkasan Downtime Hari Ini</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;">
+          <div style="text-align:center;padding:10px;background:var(--c-red-bg);border-radius:var(--radius-sm);">
+            <div style="font-size:9px;color:var(--c-red-text);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">Unplanned</div>
+            <div style="font-family:var(--font-mono);font-size:20px;font-weight:700;color:var(--c-red);">25<span style="font-size:12px;"> mnt</span></div>
+          </div>
+          <div style="text-align:center;padding:10px;background:var(--c-amber-bg);border-radius:var(--radius-sm);">
+            <div style="font-size:9px;color:var(--c-amber-text);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">Planned</div>
+            <div style="font-family:var(--font-mono);font-size:20px;font-weight:700;color:var(--c-amber);">60<span style="font-size:12px;"> mnt</span></div>
+          </div>
+          <div style="text-align:center;padding:10px;background:var(--c-blue-bg);border-radius:var(--radius-sm);">
+            <div style="font-size:9px;color:var(--c-blue-text);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">% Availability</div>
+            <div style="font-family:var(--font-mono);font-size:20px;font-weight:700;color:var(--c-accent);">94.6<span style="font-size:12px;">%</span></div>
+          </div>
+          <div style="text-align:center;padding:10px;background:var(--c-surface);border:1px solid var(--c-border);border-radius:var(--radius-sm);">
+            <div style="font-size:9px;color:var(--c-text3);font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">Total Events</div>
+            <div style="font-family:var(--font-mono);font-size:20px;font-weight:700;color:var(--c-text);">3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-ghost btn-sm">Export</button>
+        <button class="btn btn-red btn-sm" onclick="saveForm(this, '✅ Data downtime berhasil disimpan')">💾 Simpan Downtime</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB: RINGKASAN SHIFT ===== -->
+  <div class="sub-panel" id="tab-summary">
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title"><div class="card-title-icon icon-blue">📈</div>Ringkasan Shift — End of Shift Report</div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:2px;margin-bottom:16px;">
+          <div class="summary-row"><span class="summary-key">Lini / Shift</span><span class="summary-val">LINE-A · Shift 1</span></div>
+          <div class="summary-row"><span class="summary-key">Produk</span><span class="summary-val">MCU-001 — ECU CB150</span></div>
+          <div class="summary-row"><span class="summary-key">Leader</span><span class="summary-val">–</span></div>
+          <div class="summary-row"><span class="summary-key">Target Produksi</span><span class="summary-val">1,200 pcs</span></div>
+          <div class="summary-row"><span class="summary-key">Output Aktual</span><span class="summary-val" style="color:var(--c-accent);">855 pcs</span></div>
+          <div class="summary-row"><span class="summary-key">Achievement Rate</span><span class="summary-val" style="color:var(--c-amber);">71.25%</span></div>
+          <div class="summary-row"><span class="summary-key">Total NG</span><span class="summary-val" style="color:var(--c-amber);">18 pcs (2.1%)</span></div>
+          <div class="summary-row"><span class="summary-key">Total Downtime</span><span class="summary-val" style="color:var(--c-red);">25 mnt (unplanned)</span></div>
+          <div class="summary-row"><span class="summary-key">OEE Estimasi</span><span class="summary-val" style="color:var(--c-green);">78.4%</span></div>
+        </div>
+        <div class="form-field" style="margin-bottom:12px;">
+          <label class="form-label">Catatan Akhir Shift</label>
+          <textarea class="form-textarea" placeholder="Kendala utama, rencana tindak lanjut, hal yang perlu diinformasikan ke shift berikutnya..." rows="4"></textarea>
+        </div>
+        <div class="form-field">
+          <label class="form-label">Tanda Tangan Digital Leader</label>
+          <div style="display:flex;gap:10px;align-items:center;">
+            <input class="form-input" placeholder="Nama Leader (konfirmasi)">
+            <input class="form-input form-input-mono" placeholder="PIN / Kode" type="password" style="width:120px;">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-ghost btn-sm">Preview PDF</button>
+          <button class="btn btn-green btn-sm" onclick="submitEOSR(this)">✅ Submit End-of-Shift Report</button>
+        </div>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div class="card">
+          <div class="card-header" style="margin-bottom:12px;">
+            <div class="card-title"><div class="card-title-icon icon-green">📊</div>Output Trend Shift Ini</div>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:6px;height:80px;padding:0 4px;" id="summary-bars">
+            <!-- Bars injected by JS -->
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px;padding:0 4px;">
+            <span style="font-size:9px;color:var(--c-text3);font-family:var(--font-mono);">07:00</span>
+            <span style="font-size:9px;color:var(--c-text3);font-family:var(--font-mono);">15:00</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header" style="margin-bottom:12px;">
+            <div class="card-title"><div class="card-title-icon icon-amber">⚠️</div>Top NG Issues</div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--c-red-bg);border-radius:var(--radius-sm);">
+              <span style="font-size:12px;color:var(--c-text);">MCU Short Circuit</span>
+              <span class="badge badge-red">8 pcs</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--c-amber-bg);border-radius:var(--radius-sm);">
+              <span style="font-size:12px;color:var(--c-text);">Solder Bridge</span>
+              <span class="badge badge-amber">5 pcs</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--c-blue-bg);border-radius:var(--radius-sm);">
+              <span style="font-size:12px;color:var(--c-text);">Visual Scratch</span>
+              <span class="badge badge-blue">3 pcs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="dash-footer">
+  Production Forms System · PT. Chao Long Motor Parts Indonesia · v1.0
+</footer>
+
+<!-- ===== TOAST CONTAINER ===== -->
+<div class="toast-wrap" id="toast-wrap"></div>
+
+<script>
+// ===== CLOCK =====
+function updateClock() {
+  const now = new Date();
+  const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+  const months = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agt','Sep','Okt','Nov','Des'];
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mm = String(now.getMinutes()).padStart(2,'0');
+  const ss = String(now.getSeconds()).padStart(2,'0');
+  const d = document.getElementById('clock');
+  if(d) d.textContent = hh+':'+mm+':'+ss;
+  const dd = document.getElementById('clock-date');
+  if(dd) dd.textContent = days[now.getDay()]+', '+now.getDate()+' '+months[now.getMonth()]+' '+now.getFullYear();
+  const lc = document.getElementById('leader-clock');
+  if(lc) lc.textContent = hh+':'+mm;
+  const ld = document.getElementById('leader-date');
+  if(ld) ld.textContent = days[now.getDay()]+', '+now.getDate()+' '+months[now.getMonth()]+' '+now.getFullYear();
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// Set today's date
+document.getElementById('setup-date').valueAsDate = new Date();
+const now = new Date();
+document.getElementById('setup-start-time').value = String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+
+// ===== ROLE SWITCH =====
+function switchRole(role) {
+  document.getElementById('page-admin').classList.toggle('active', role==='admin');
+  document.getElementById('page-leader').classList.toggle('active', role==='leader');
+  document.getElementById('btn-admin').className = 'rs-btn'+(role==='admin'?' active-purple':'');
+  document.getElementById('btn-leader').className = 'rs-btn'+(role==='leader'?' active':'');
+  const ri = document.getElementById('roleIndicator');
+  const rl = document.getElementById('roleLabel');
+  if(role==='admin') { ri.className='role-badge role-admin'; rl.textContent='Super Admin'; }
+  else { ri.className='role-badge role-leader'; rl.textContent='Leader Produksi'; }
+}
+
+// ===== ADMIN TAB SWITCH =====
+function switchAdminTab(tab) {
+  const tabs = ['line','product','operator','process','target','shift'];
+  const labels = ['🏭 Lini Produksi','📦 Master Produk','👤 Operator','⚙️ Proses & Sub-Proses','🎯 Target Produksi','🕐 Konfigurasi Shift'];
+  const btns = document.querySelectorAll('#admin-subnav .sub-btn');
+  tabs.forEach((t,i) => {
+    const p = document.getElementById('tab-'+t);
+    const b = btns[i];
+    if(t===tab){ p.classList.add('active'); b.className='sub-btn active-purple'; }
+    else { p.classList.remove('active'); b.className='sub-btn'; }
+  });
+}
+
+// ===== LEADER TAB SWITCH =====
+function switchLeaderTab(tab) {
+  const tabs = ['setup','output','ng','downtime','summary'];
+  const btns = document.querySelectorAll('#leader-subnav .sub-btn');
+  tabs.forEach((t,i) => {
+    const p = document.getElementById('tab-'+t);
+    const b = btns[i];
+    if(t===tab){ p.classList.add('active'); b.className='sub-btn active'; }
+    else { p.classList.remove('active'); b.className='sub-btn'; }
+  });
+}
+
+// ===== TOGGLE SELECT =====
+function selectToggle(groupId, el) {
+  const grp = document.getElementById(groupId);
+  grp.querySelectorAll('.toggle-opt').forEach(o => {
+    o.className = 'toggle-opt';
+  });
+  el.className = 'toggle-opt selected';
+}
+
+// ===== SETUP STEPS =====
+let setupChecks = 0;
+const totalChecks = 12;
+
+function goSetupStep(step) {
+  for(let i=1;i<=4;i++) {
+    const s = document.getElementById('setup-step-'+i);
+    if(s) s.style.display = i===step ? 'block' : 'none';
+    const p = document.getElementById('pstep-'+i);
+    if(p) {
+      p.className = 'step-item';
+      if(i < step) p.classList.add('done');
+      if(i === step) p.classList.add('active');
+    }
+  }
+}
+
+function nextSetupStep(current) {
+  goSetupStep(current + 1);
+}
+
+function checkSetupItem(cb) {
+  setupChecks = document.querySelectorAll('#setup-step-2 input[type=checkbox]:checked').length;
+  const pct = (setupChecks / totalChecks) * 100;
+  document.getElementById('setup-progress').style.width = pct + '%';
+  document.getElementById('setup-check-count').textContent = setupChecks + ' / ' + totalChecks + ' item selesai';
+}
+
+function startProduction(btn) {
+  btn.classList.add('btn-loading');
+  btn.textContent = '  Memulai...';
+  setTimeout(() => {
+    btn.classList.remove('btn-loading');
+    showToast('🚀 Produksi dimulai! LINE-A · Shift 1 · MCU-001', 'success');
+    switchLeaderTab('output');
+  }, 1500);
+}
+
+// ===== HOURLY TABLE =====
+const hourlyData = [
+  {hour:'07:00–08:00', actual:142, ng:2, dt:0, note:'Normal'},
+  {hour:'08:00–09:00', actual:138, ng:3, dt:5, note:'Downtime: probe reset'},
+  {hour:'09:00–10:00', actual:0,   ng:0, dt:60, note:'ISTIRAHAT'},
+  {hour:'10:00–11:00', actual:145, ng:1, dt:0, note:'Normal'},
+  {hour:'11:00–12:00', actual:150, ng:2, dt:0, note:'On-target'},
+  {hour:'12:00–13:00', actual:148, ng:4, dt:0, note:'NG tinggi – cek probe'},
+  {hour:'13:00–14:00', actual:132, ng:3, dt:20, note:'Downtime: label tape'},
+  {hour:'14:00–15:00', actual:0,   ng:0, dt:0,  note:'Belum'},
+];
+const target = 150;
+function buildHourlyTable() {
+  const tbody = document.getElementById('hourly-tbody');
+  if(!tbody) return;
+  tbody.innerHTML = '';
+  hourlyData.forEach((row, i) => {
+    const tr = document.createElement('tr');
+    const isBreak = row.note === 'ISTIRAHAT';
+    const done = row.actual > 0;
+    const diff = done ? row.actual - target : null;
+    let statusClass = 'sc-empty'; let statusText = '–';
+    if(isBreak){ statusClass='sc-ng'; statusText='ISTIRAHAT'; }
+    else if(done){
+      if(row.actual >= target){ statusClass='sc-ok'; statusText='ON TARGET'; }
+      else if(row.actual >= target*0.9){ statusClass='sc-ng'; statusText='WARNING'; }
+      else { statusClass='sc-below'; statusText='BELOW'; }
+    }
+    let inputClass = 'hour-input';
+    if(done && !isBreak){ inputClass += row.actual>=target ? ' ok' : (row.actual>=target*0.9?' ng-val':' below'); }
+    tr.innerHTML = `
+      <td><div class="hour-label">${row.hour}</div></td>
+      <td style="text-align:center;">
+        <input class="${inputClass}" type="number" value="${done && !isBreak ? row.actual : ''}" placeholder="–"
+          onchange="updateHourlyRow(${i}, this.value, 'actual')" ${isBreak?'readonly style="background:var(--c-amber-bg);border-color:var(--c-amber);"':''}>
+      </td>
+      <td style="text-align:center;"><span style="font-family:var(--font-mono);font-size:13px;color:var(--c-text3);">${isBreak?'–':target}</span></td>
+      <td style="text-align:center;">
+        <span style="font-family:var(--font-mono);font-size:13px;font-weight:600;color:${diff===null||isBreak?'var(--c-text3)':diff>=0?'var(--c-green)':'var(--c-red)'};">
+          ${isBreak?'–':(diff===null?'–':(diff>=0?'+':'')+diff)}
+        </span>
+      </td>
+      <td style="text-align:center;"><span class="status-chip ${statusClass}">${statusText}</span></td>
+      <td style="text-align:center;">
+        <input class="hour-input" style="width:60px;" type="number" value="${done && !isBreak ? row.ng : ''}" placeholder="–"
+          onchange="updateHourlyRow(${i}, this.value, 'ng')" ${isBreak?'readonly style="background:var(--c-amber-bg);border-color:var(--c-amber);"':''}>
+      </td>
+      <td style="text-align:center;">
+        <input class="hour-input" style="width:60px;" type="number" value="${row.dt > 0 ? row.dt : ''}" placeholder="–"
+          onchange="updateHourlyRow(${i}, this.value, 'dt')" ${isBreak?'readonly style="background:var(--c-amber-bg);border-color:var(--c-amber);"':''}>
+      </td>
+      <td><input class="hour-input" style="width:100%;font-size:12px;font-family:var(--font-main);" type="text" value="${done && !isBreak ? row.note : ''}" placeholder="Keterangan…"
+        ${isBreak?'readonly value="ISTIRAHAT" style="background:var(--c-amber-bg);border-color:var(--c-amber);"':''}></td>
+      <td style="text-align:center;">
+        ${!isBreak ? `<button class="btn btn-ghost btn-sm" style="font-size:11px;padding:4px 8px;" onclick="saveHourlyRow(${i}, this)">💾</button>` : '<span style="color:var(--c-text3);font-size:11px;">–</span>'}
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+buildHourlyTable();
+
+function updateHourlyRow(i, val, field) {
+  hourlyData[i][field] = parseInt(val) || 0;
+}
+function saveHourlyRow(i, btn) {
+  btn.textContent = '✓';
+  btn.style.color = 'var(--c-green)';
+  setTimeout(() => { btn.textContent = '💾'; btn.style.color = ''; }, 2000);
+  showToast('✅ Data jam '+(i+1)+' tersimpan', 'success');
+}
+
+// ===== NG ENTRIES =====
+let ngCount = 0;
+const ngDefects = ['MCU Short Circuit','Solder Bridge','Visual Scratch','Label Paste Off','Conformal Coat Missing','BT Fail','Final FI Fail','Dimension OOT','Missing Component','Other'];
+
+function addNgEntry() {
+  ngCount++;
+  const id = 'ng-' + ngCount;
+  const container = document.getElementById('ng-entries-container');
+  const div = document.createElement('div');
+  div.className = 'ng-entry';
+  div.id = id;
+  div.innerHTML = `
+    <div class="ng-entry-header">
+      <span class="ng-entry-num">NG #${String(ngCount).padStart(2,'0')}</span>
+      <button class="ng-del-btn" onclick="removeEntry('${id}')">×</button>
+    </div>
+    <div class="form-grid form-grid-3" style="gap:10px;">
+      <div class="form-field">
+        <label class="form-label">Jenis Defect <span class="req">*</span></label>
+        <select class="form-select" style="height:38px;">
+          <option>– Pilih –</option>
+          ${ngDefects.map(d=>`<option>${d}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Sub-Proses Temuan</label>
+        <select class="form-select" style="height:38px;">
+          <option>– Pilih –</option>
+          <option>BT Burning Beta</option><option>MCU Flash</option><option>Final FI</option>
+          <option>Visual & Pack</option><option>Soldering</option><option>Conformal Coat</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Jam Temuan</label>
+        <input class="form-input" type="time" style="height:38px;">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Qty NG <span class="req">*</span></label>
+        <div class="input-unit">
+          <input class="form-input form-input-mono" type="number" min="1" placeholder="1" style="height:38px;">
+          <span class="unit-tag">pcs</span>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Disposisi</label>
+        <select class="form-select" style="height:38px;">
+          <option>Rework</option><option>Scrap</option><option>Hold – Pending QC</option><option>Accepted (concession)</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Ditemukan Oleh</label>
+        <input class="form-input" placeholder="Nama operator / QC" style="height:38px;">
+      </div>
+      <div class="form-field span-3">
+        <label class="form-label">Deskripsi & Akar Masalah (sementara)</label>
+        <textarea class="form-textarea" placeholder="Deskripsikan kondisi defect, kemungkinan penyebab, tindakan yang sudah diambil..." rows="2" style="min-height:60px;"></textarea>
+      </div>
+    </div>
+  `;
+  container.appendChild(div);
+  document.getElementById('ng-empty').style.display = 'none';
+}
+
+// Auto-add first NG entry
+addNgEntry();
+
+// ===== DOWNTIME ENTRIES =====
+let dtCount = 0;
+const dtCategories = ['Breakdown Mesin','Tunggu Material','Changeover/Setup','Quality Hold','Utility (Listrik/Air)','Lainnya'];
+
+function addDtEntry() {
+  dtCount++;
+  const id = 'dt-' + dtCount;
+  const container = document.getElementById('dt-entries-container');
+  const div = document.createElement('div');
+  div.className = 'dt-entry';
+  div.id = id;
+  div.innerHTML = `
+    <div class="ng-entry-header">
+      <span class="ng-entry-num" style="background:var(--c-red-bg);color:var(--c-red-text);">DT #${String(dtCount).padStart(2,'0')}</span>
+      <button class="ng-del-btn" onclick="removeEntry('${id}')">×</button>
+    </div>
+    <div class="form-grid form-grid-3" style="gap:10px;">
+      <div class="form-field">
+        <label class="form-label">Kategori Downtime <span class="req">*</span></label>
+        <select class="form-select" style="height:38px;">
+          <option>– Pilih –</option>
+          ${dtCategories.map(d=>`<option>${d}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Tipe</label>
+        <div class="toggle-group" id="dt-type-${dtCount}">
+          <div class="toggle-opt selected-red" onclick="selectToggle('dt-type-${dtCount}',this)"><div class="toggle-dot"></div>Unplanned</div>
+          <div class="toggle-opt" onclick="selectToggle('dt-type-${dtCount}',this)"><div class="toggle-dot"></div>Planned</div>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Sub-Proses Terdampak</label>
+        <select class="form-select" style="height:38px;">
+          <option>Semua Lini</option>
+          <option>BT Burning</option><option>MCU Flash</option><option>Final FI</option><option>Soldering</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label class="form-label">Jam Mulai <span class="req">*</span></label>
+        <input class="form-input" type="time" style="height:38px;">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Jam Selesai</label>
+        <input class="form-input" type="time" style="height:38px;">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Durasi</label>
+        <div class="input-unit">
+          <input class="form-input form-input-mono" type="number" placeholder="0" style="height:38px;background:var(--c-surface2);color:var(--c-text2);" readonly>
+          <span class="unit-tag">mnt</span>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="form-label">PIC / Teknisi</label>
+        <input class="form-input" placeholder="Nama PIC yang handle" style="height:38px;">
+      </div>
+      <div class="form-field">
+        <label class="form-label">Status</label>
+        <div class="toggle-group" id="dt-status-${dtCount}">
+          <div class="toggle-opt selected-amber" onclick="selectToggle('dt-status-${dtCount}',this)"><div class="toggle-dot"></div>On-going</div>
+          <div class="toggle-opt" onclick="selectToggle('dt-status-${dtCount}',this)"><div class="toggle-dot"></div>Resolved</div>
+          <div class="toggle-opt" onclick="selectToggle('dt-status-${dtCount}',this)"><div class="toggle-dot"></div>Pending</div>
+        </div>
+      </div>
+      <div class="form-field span-3">
+        <label class="form-label">Deskripsi Kejadian & Tindakan</label>
+        <textarea class="form-textarea" placeholder="Deskripsi kejadian, tindakan yang diambil, root cause awal..." rows="2" style="min-height:60px;"></textarea>
+      </div>
+    </div>
+  `;
+  container.appendChild(div);
+}
+
+// Auto-add first DT entry
+addDtEntry();
+
+function removeEntry(id) {
+  const el = document.getElementById(id);
+  if(el){ el.style.opacity='0'; el.style.transform='translateX(20px)'; el.style.transition='all 0.3s'; setTimeout(()=>el.remove(), 300); }
+}
+
+// ===== SKILL INPUT TABLE =====
+const processes = ['BT Beta','BT Official','FFI & R-Mark','RMark Paste','Final FI','Visual & Pack','Gluing','Soldering','MCU Flash','Conf. Coat'];
+function buildSkillTable() {
+  const tbody = document.getElementById('skill-input-tbody');
+  if(!tbody) return;
+  processes.forEach((p, i) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td style="font-size:12px;color:var(--c-text2);padding:8px 12px;">${p}</td>
+      <td style="padding:8px 12px;">
+        <div class="skill-sel" id="sk-grp-${i}">
+          ${[0,1,2,3,4].map(n=>`<button class="sk-btn sk${n}${n===0?' selected':''}" onclick="selSkill(${i},${n},this)">${n}</button>`).join('')}
+        </div>
+      </td>
+      <td style="text-align:center;padding:8px 12px;">
+        <label class="checkbox-item" style="justify-content:center;">
+          <input type="checkbox"><span class="cb-label" style="font-size:11px;">Ya</span>
+        </label>
+      </td>
+      <td style="text-align:center;padding:8px 12px;">
+        <div class="toggle-group" id="wi-${i}">
+          <div class="toggle-opt selected" style="padding:4px 10px;font-size:11px;" onclick="selectToggle('wi-${i}',this)">Pass</div>
+          <div class="toggle-opt" style="padding:4px 10px;font-size:11px;" onclick="selectToggle('wi-${i}',this)">Fail</div>
+        </div>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+buildSkillTable();
+
+function selSkill(proc, level, btn) {
+  const grp = document.getElementById('sk-grp-'+proc);
+  grp.querySelectorAll('.sk-btn').forEach(b => {
+    const cl = b.className.match(/sk\d/)[0];
+    b.className = 'sk-btn ' + cl;
+  });
+  btn.className = 'sk-btn sk'+level+' selected';
+}
+
+// ===== SUMMARY BARS =====
+function buildSummaryBars() {
+  const container = document.getElementById('summary-bars');
+  if(!container) return;
+  const data = [142,138,0,145,150,148,132,0];
+  const max = 165;
+  data.forEach((v, i) => {
+    const col = document.createElement('div');
+    col.style.cssText = 'flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;';
+    if(v > 0) {
+      const bar = document.createElement('div');
+      const pct = (v/max)*100;
+      const color = v >= target ? 'linear-gradient(180deg,#00B37D,#34D399)' : 'linear-gradient(180deg,#F59E0B,#FCD34D)';
+      bar.style.cssText = `width:100%;height:${pct}%;background:${color};border-radius:4px 4px 2px 2px;min-height:4px;`;
+      col.style.alignItems = 'flex-end';
+      col.appendChild(bar);
+    } else {
+      const empty = document.createElement('div');
+      empty.style.cssText = 'width:100%;height:8%;background:#F1F5F9;border-radius:4px 4px 2px 2px;border:1px dashed #E2E8F0;';
+      col.style.alignItems = 'flex-end';
+      col.appendChild(empty);
+    }
+    const lbl = document.createElement('div');
+    lbl.style.cssText = 'font-size:9px;font-family:JetBrains Mono,monospace;color:#9BA3B4;';
+    lbl.textContent = v > 0 ? v : '–';
+    col.appendChild(lbl);
+    container.appendChild(col);
+  });
+}
+buildSummaryBars();
+
+// ===== SAVE / SUBMIT HANDLERS =====
+function saveForm(btn, msg) {
+  const orig = btn.innerHTML;
+  btn.classList.add('btn-loading');
+  btn.innerHTML = '  Menyimpan...';
+  setTimeout(() => {
+    btn.classList.remove('btn-loading');
+    btn.innerHTML = orig;
+    showToast(msg || '✅ Data berhasil disimpan', 'success');
+  }, 1200);
+}
+
+function submitEOSR(btn) {
+  const orig = btn.innerHTML;
+  btn.classList.add('btn-loading');
+  btn.innerHTML = '  Submitting...';
+  setTimeout(() => {
+    btn.classList.remove('btn-loading');
+    btn.innerHTML = orig;
+    showToast('✅ End-of-Shift Report berhasil disubmit!', 'success');
+  }, 1800);
+}
+
+// ===== TOAST =====
+function showToast(msg, type='info') {
+  const wrap = document.getElementById('toast-wrap');
+  const toast = document.createElement('div');
+  const icons = {success:'✅', error:'❌', info:'ℹ️'};
+  toast.className = 'toast toast-'+type;
+  toast.innerHTML = `<span class="toast-icon">${icons[type]||'ℹ️'}</span><span>${msg}</span>`;
+  wrap.appendChild(toast);
+  requestAnimationFrame(() => { requestAnimationFrame(() => { toast.classList.add('show'); }); });
+  setTimeout(() => {
+    toast.classList.remove('show');
+    setTimeout(() => toast.remove(), 400);
+  }, 3500);
+}
+
+// ===== OPERATOR LIST DATA & RENDER =====
+const operatorMasterData = [
+  { id:'AF-001', name:'Ahmad Fauzi',   init:'AF', line:'LINE-A', skillAvg:3.3, status:'Aktif',    join:'Mar 2021', bg:'#EFF6FF', tc:'#1D4ED8' },
+  { id:'SR-002', name:'Siti Rahayu',   init:'SR', line:'LINE-A', skillAvg:3.1, status:'Aktif',    join:'Jun 2022', bg:'#F0FDF4', tc:'#166534' },
+  { id:'DL-003', name:'Dewi Lestari',  init:'DL', line:'LINE-A', skillAvg:3.7, status:'Aktif',    join:'Aug 2021', bg:'#ECFDF5', tc:'#047857' },
+  { id:'EP-004', name:'Eko Prasetyo',  init:'EP', line:'LINE-B', skillAvg:1.8, status:'Training', join:'Nov 2022', bg:'#FEF2F2', tc:'#991B1B' },
+  { id:'FH-005', name:'Fitriani H.',   init:'FH', line:'LINE-A', skillAvg:3.8, status:'Aktif',    join:'May 2020', bg:'#F5F3FF', tc:'#6D28D9' },
+  { id:'BS-006', name:'Budi Santoso',  init:'BS', line:'LINE-B', skillAvg:2.6, status:'Aktif',    join:'Jan 2023', bg:'#FEF9C3', tc:'#713F12' },
+  { id:'GP-007', name:'Galih Permana', init:'GP', line:'SMT-01', skillAvg:1.9, status:'Training', join:'Sep 2023', bg:'#FFF7ED', tc:'#C2410C' },
+  { id:'HS-008', name:'Hani Susanti',  init:'HS', line:'LINE-A', skillAvg:3.2, status:'Aktif',    join:'Apr 2021', bg:'#EFF6FF', tc:'#1E40AF' },
+];
+
+function renderOpList(data) {
+  const tbody = document.getElementById('op-list-tbody');
+  const empty = document.getElementById('op-empty');
+  if (!tbody) return;
+  tbody.innerHTML = '';
+  if (data.length === 0) {
+    if(empty) empty.style.display = 'block';
+    return;
+  }
+  if(empty) empty.style.display = 'none';
+  data.forEach(op => {
+    const skillColor = op.skillAvg >= 3.5 ? 'var(--c-green)' : op.skillAvg >= 2.5 ? 'var(--c-accent)' : 'var(--c-amber)';
+    const statusBadge = op.status === 'Aktif'
+      ? `<span class="badge badge-green" style="font-size:10px;">${op.status}</span>`
+      : `<span class="badge badge-amber" style="font-size:10px;">${op.status}</span>`;
+    const tr = document.createElement('tr');
+    tr.dataset.line = op.line;
+    tr.dataset.status = op.status;
+    tr.dataset.name = op.name.toLowerCase();
+    tr.dataset.id = op.id.toLowerCase();
+    tr.innerHTML = `
+      <td style="font-family:var(--font-mono);font-size:11px;">${op.id}</td>
+      <td>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:28px;height:28px;border-radius:50%;background:${op.bg};color:${op.tc};display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;">${op.init}</div>
+          <div>
+            <div style="font-size:12px;font-weight:600;color:var(--c-text);">${op.name}</div>
+            <div style="font-size:10px;color:var(--c-text3);">Join: ${op.join}</div>
+          </div>
+        </div>
+      </td>
+      <td><span class="badge badge-blue" style="font-size:10px;">${op.line}</span></td>
+      <td style="text-align:center;"><span style="font-family:var(--font-mono);font-size:13px;font-weight:600;color:${skillColor};">${op.skillAvg.toFixed(1)}</span></td>
+      <td>${statusBadge}</td>
+      <td>
+        <div style="display:flex;gap:4px;">
+          <button class="btn btn-ghost btn-sm" style="font-size:11px;padding:4px 8px;" onclick="editOperator('${op.id}')">✏️</button>
+          <button class="btn btn-ghost btn-sm" style="font-size:11px;padding:4px 8px;color:var(--c-red);" onclick="deleteOperator('${op.id}')">🗑️</button>
+        </div>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+  const badge = document.getElementById('op-count-badge');
+  if(badge) badge.textContent = data.filter(o=>o.status==='Aktif').length + ' Aktif';
+}
+
+function filterOpList() {
+  const query = (document.getElementById('op-search-input')?.value || '').toLowerCase();
+  const lineFilter = document.getElementById('op-filter-line')?.value || '';
+  const statusFilter = document.getElementById('op-filter-status')?.value || '';
+  const filtered = operatorMasterData.filter(op => {
+    const matchQuery = !query || op.name.toLowerCase().includes(query) || op.id.toLowerCase().includes(query);
+    const matchLine = !lineFilter || op.line === lineFilter;
+    const matchStatus = !statusFilter || op.status === statusFilter;
+    return matchQuery && matchLine && matchStatus;
+  });
+  renderOpList(filtered);
+}
+
+function editOperator(id) {
+  const op = operatorMasterData.find(o=>o.id===id);
+  if(op) showToast(`✏️ Edit mode: ${op.name}`, 'info');
+}
+
+function deleteOperator(id) {
+  const op = operatorMasterData.find(o=>o.id===id);
+  if(!op) return;
+  confirmModal(`Hapus data operator <strong>${op.name}</strong> (${op.id})?`, () => {
+    const idx = operatorMasterData.findIndex(o=>o.id===id);
+    if(idx>-1) operatorMasterData.splice(idx,1);
+    filterOpList();
+    showToast(`🗑️ Operator ${op.name} dihapus`, 'info');
+  });
+}
+
+// Initial render
+renderOpList(operatorMasterData);
+
+// ===== SUBPROCESS DYNAMIC ADD (Super Admin - Proses) =====
+let spRowCount = 1;
+function addSubprocess() {
+  spRowCount++;
+  const container = document.getElementById('subprocess-list');
+  const row = document.createElement('div');
+  row.style.cssText = 'display:grid;grid-template-columns:1fr 1fr 140px 120px auto;gap:10px;align-items:end;margin-bottom:10px;animation:fadeUp 0.3s ease;';
+  row.id = 'sp-row-' + spRowCount;
+  row.innerHTML = `
+    <div><input class="form-input" placeholder="Nama sub-proses ke-${spRowCount}"></div>
+    <div><input class="form-input form-input-mono" placeholder="SP-00${spRowCount}"></div>
+    <div><div class="input-unit"><input class="form-input form-input-mono" type="number" placeholder="24"><span class="unit-tag">det</span></div></div>
+    <div><input class="form-input form-input-mono" type="number" placeholder="${spRowCount}" min="1"></div>
+    <div>
+      <button class="btn btn-ghost btn-sm" style="color:var(--c-red);border-color:rgba(239,68,68,0.3);"
+        onclick="removeSpRow('sp-row-${spRowCount}')">✕ Hapus</button>
+    </div>
+  `;
+  container.appendChild(row);
+}
+function removeSpRow(id) {
+  const el = document.getElementById(id);
+  if(el){ el.style.opacity='0'; el.style.transform='translateX(20px)'; el.style.transition='all 0.3s'; setTimeout(()=>el.remove(),300); }
+}
+
+// ===== DOWNTIME DURATION AUTO-CALC =====
+document.addEventListener('change', function(e) {
+  // Auto-calculate downtime duration when start/end time changes
+  const dtEntry = e.target.closest('.dt-entry');
+  if (!dtEntry) return;
+  const inputs = dtEntry.querySelectorAll('input[type=time]');
+  if (inputs.length < 2) return;
+  const startVal = inputs[0].value;
+  const endVal = inputs[1].value;
+  if (startVal && endVal) {
+    const [sh,sm] = startVal.split(':').map(Number);
+    const [eh,em] = endVal.split(':').map(Number);
+    let diff = (eh*60+em) - (sh*60+sm);
+    if (diff < 0) diff += 1440; // overnight
+    const durationInput = dtEntry.querySelector('input[readonly]');
+    if (durationInput) {
+      durationInput.value = diff > 0 ? diff : 0;
+      if (diff > 0) {
+        durationInput.style.color = diff > 30 ? 'var(--c-red)' : 'var(--c-amber)';
+        durationInput.style.background = diff > 30 ? 'var(--c-red-bg)' : 'var(--c-amber-bg)';
+        durationInput.style.borderColor = diff > 30 ? 'var(--c-red)' : 'var(--c-amber)';
+      }
+    }
+  }
+});
+
+// ===== FORM VALIDATION =====
+function validateRequired(form) {
+  let valid = true;
+  form.querySelectorAll('[data-required]').forEach(el => {
+    const errEl = el.parentElement.querySelector('.form-error');
+    if (!el.value || el.value === '– Pilih –' || el.value === '– Pilih Lini –' || el.value === '– Pilih Produk –') {
+      el.style.borderColor = 'var(--c-red)';
+      if(errEl){ errEl.style.display='block'; errEl.textContent='Field ini wajib diisi'; }
+      valid = false;
+    } else {
+      el.style.borderColor = '';
+      if(errEl) errEl.style.display='none';
+    }
+  });
+  return valid;
+}
+
+// Inline validation on blur
+document.addEventListener('blur', function(e) {
+  const el = e.target;
+  if (!el.dataset.required) return;
+  if (!el.value || el.value.includes('– Pilih')) {
+    el.style.borderColor = 'var(--c-red)';
+    el.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.08)';
+  } else {
+    el.style.borderColor = 'var(--c-green)';
+    el.style.boxShadow = '0 0 0 3px rgba(0,179,125,0.08)';
+    setTimeout(()=>{ el.style.borderColor=''; el.style.boxShadow=''; }, 2000);
+  }
+}, true);
+
+// ===== HOURLY TABLE: LIVE RECALCULATE TOTALS =====
+function recalcHourlyTotals() {
+  let totalOut = 0, totalNg = 0, totalDt = 0, okHours = 0;
+  const rows = document.querySelectorAll('#hourly-tbody tr');
+  rows.forEach((row, i) => {
+    const inputs = row.querySelectorAll('.hour-input');
+    if (inputs.length < 3) return;
+    const actual = parseInt(inputs[0].value) || 0;
+    const ng = parseInt(inputs[1].value) || 0;
+    const dt = parseInt(inputs[2].value) || 0;
+    // skip istirahat row
+    if (hourlyData[i] && hourlyData[i].note === 'ISTIRAHAT') return;
+    totalOut += actual;
+    totalNg += ng;
+    totalDt += dt;
+    if (actual >= target) okHours++;
+
+    // re-color input
+    const actInput = inputs[0];
+    actInput.className = 'hour-input';
+    if (actual > 0) {
+      if (actual >= target) actInput.classList.add('ok');
+      else if (actual >= target * 0.9) actInput.classList.add('ng-val');
+      else actInput.classList.add('below');
+    }
+  });
+
+  const toEl = document.getElementById('total-output');
+  const ngEl = document.getElementById('total-ng');
+  const dtEl = document.getElementById('total-dt');
+  const okEl = document.getElementById('ok-hours');
+  if (toEl) toEl.textContent = totalOut.toLocaleString('id');
+  if (ngEl) {
+    ngEl.textContent = totalNg;
+    const ngRate = totalOut > 0 ? ((totalNg/totalOut)*100).toFixed(1) : '0.0';
+    ngEl.parentElement.querySelector('div').textContent = `≈ ${ngRate}% NG rate`;
+  }
+  if (dtEl) dtEl.textContent = totalDt;
+  if (okEl) okEl.textContent = okHours;
+}
+
+// Attach live listener to hourly table
+document.addEventListener('input', function(e) {
+  if (e.target.closest('#hourly-tbody')) recalcHourlyTotals();
+});
+
+// ===== CONFIRM MODAL =====
+function confirmModal(message, onConfirm) {
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `
+    position:fixed;inset:0;background:rgba(15,25,35,0.6);z-index:9999;
+    display:flex;align-items:center;justify-content:center;
+    animation:fadeUp 0.2s ease;backdrop-filter:blur(4px);
+  `;
+  overlay.innerHTML = `
+    <div style="background:white;border-radius:var(--radius-xl);padding:28px;max-width:380px;width:90%;box-shadow:var(--shadow-lg);">
+      <div style="font-size:24px;margin-bottom:12px;">⚠️</div>
+      <div style="font-size:15px;font-weight:700;color:var(--c-text);margin-bottom:8px;">Konfirmasi</div>
+      <div style="font-size:13px;color:var(--c-text2);line-height:1.6;margin-bottom:20px;">${message}</div>
+      <div style="display:flex;gap:10px;justify-content:flex-end;">
+        <button class="btn btn-ghost btn-sm" id="modal-cancel">Batal</button>
+        <button class="btn btn-red btn-sm" id="modal-confirm">Ya, Hapus</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  document.getElementById('modal-cancel').onclick = () => overlay.remove();
+  document.getElementById('modal-confirm').onclick = () => { overlay.remove(); onConfirm(); };
+  overlay.onclick = (e) => { if(e.target===overlay) overlay.remove(); };
+}
+
+// Override removeEntry to use confirm modal
+function removeEntry(id) {
+  confirmModal('Data ini akan dihapus secara permanen. Yakin ingin melanjutkan?', () => {
+    const el = document.getElementById(id);
+    if(el){ el.style.opacity='0'; el.style.transform='translateX(20px)'; el.style.transition='all 0.3s'; setTimeout(()=>el.remove(),300); }
+    showToast('🗑️ Entry berhasil dihapus', 'info');
+  });
+}
+
+// ===== PRODUCTION COUNTER BADGE (nav indicator) =====
+function updateNavBadges() {
+  const ngCount = document.querySelectorAll('.ng-entry').length;
+  const dtCount = document.querySelectorAll('.dt-entry').length;
+  const leaderBtns = document.querySelectorAll('#leader-subnav .sub-btn');
+  // Update NG badge
+  if (leaderBtns[2]) {
+    const base = '⚠️ Laporan NG';
+    leaderBtns[2].innerHTML = ngCount > 0 ? `${base} <span style="background:var(--c-amber);color:white;border-radius:99px;padding:1px 7px;font-size:10px;font-weight:700;margin-left:4px;">${ngCount}</span>` : base;
+  }
+  // Update DT badge
+  if (leaderBtns[3]) {
+    const base = '⏸️ Downtime';
+    leaderBtns[3].innerHTML = dtCount > 0 ? `${base} <span style="background:var(--c-red);color:white;border-radius:99px;padding:1px 7px;font-size:10px;font-weight:700;margin-left:4px;">${dtCount}</span>` : base;
+  }
+}
+
+// Wrap addNgEntry and addDtEntry with badge update
+const _origAddNg = addNgEntry;
+addNgEntry = function() { _origAddNg(); updateNavBadges(); };
+const _origAddDt = addDtEntry;
+addDtEntry = function() { _origAddDt(); updateNavBadges(); };
+
+// ===== PRODUCTION TIMER (Live Duration) =====
+let productionStartTime = null;
+let productionTimerInterval = null;
+
+function startProductionTimer() {
+  productionStartTime = new Date();
+  productionTimerInterval = setInterval(() => {
+    const elapsed = Math.floor((new Date() - productionStartTime) / 1000);
+    const h = Math.floor(elapsed / 3600);
+    const m = Math.floor((elapsed % 3600) / 60);
+    const s = elapsed % 60;
+    const el = document.getElementById('prod-timer');
+    if (el) el.textContent = `${h}j ${String(m).padStart(2,'0')}m ${String(s).padStart(2,'0')}d`;
+  }, 1000);
+}
+
+// Override startProduction
+function startProduction(btn) {
+  btn.classList.add('btn-loading');
+  btn.textContent = '  Memulai...';
+  setTimeout(() => {
+    btn.classList.remove('btn-loading');
+    showToast('🚀 Produksi dimulai! LINE-A · Shift 1 · MCU-001', 'success');
+    startProductionTimer();
+    switchLeaderTab('output');
+  }, 1500);
+}
+
+// ===== SHIFT CONFIG: Auto-calculate effective time =====
+document.addEventListener('change', function(e) {
+  const shiftBlock = e.target.closest('#shift-config > div');
+  if (!shiftBlock) return;
+  const timeInputs = shiftBlock.querySelectorAll('input[type=time]');
+  const numInputs = shiftBlock.querySelectorAll('input[type=number]');
+  if (timeInputs.length >= 2 && numInputs.length >= 1) {
+    const start = timeInputs[0].value;
+    const end = timeInputs[1].value;
+    const breakDur = parseInt(numInputs[0].value) || 0;
+    if (start && end) {
+      const [sh, sm] = start.split(':').map(Number);
+      const [eh, em] = end.split(':').map(Number);
+      let totalMin = (eh * 60 + em) - (sh * 60 + sm);
+      if (totalMin < 0) totalMin += 1440;
+      const effective = totalMin - breakDur;
+      const effHours = (effective / 60).toFixed(1);
+      if (numInputs[1]) numInputs[1].value = effective;
+      if (numInputs[2]) numInputs[2].value = effHours;
+    }
+  }
+});
+
+// ===== PRODUCT FORM: Auto-calc target/shift from target/jam =====
+document.addEventListener('input', function(e) {
+  const productPanel = document.getElementById('tab-product');
+  if (!productPanel || !productPanel.contains(e.target)) return;
+  const inputs = productPanel.querySelectorAll('input[type=number]');
+  // inputs[0]=cycle time, inputs[1]=target/shift
+  // auto suggest target/shift from cycle time
+});
+
+// ===== SEARCH/FILTER for operator list =====
+function filterOperatorTable(query) {
+  const rows = document.querySelectorAll('.operator-row');
+  rows.forEach(row => {
+    const text = row.textContent.toLowerCase();
+    row.style.display = text.includes(query.toLowerCase()) ? '' : 'none';
+  });
+}
+
+// ===== KEYBOARD SHORTCUTS =====
+document.addEventListener('keydown', function(e) {
+  // Ctrl+S = save (prevent default browser save)
+  if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+    e.preventDefault();
+    // Find active save button
+    const activePanel = document.querySelector('.sub-panel.active');
+    if (activePanel) {
+      const saveBtn = activePanel.querySelector('.btn-primary, .btn-green, .btn-amber, .btn-red');
+      if (saveBtn && saveBtn.textContent.includes('Simpan')) {
+        saveBtn.click();
+        showToast('💾 Disimpan via Ctrl+S', 'success');
+      }
+    }
+  }
+  // Escape = close modal
+  if (e.key === 'Escape') {
+    const overlay = document.querySelector('[style*="position:fixed"][style*="inset:0"]');
+    if (overlay) overlay.remove();
+  }
+});
+
+// ===== RESPONSIVE: sticky form actions on mobile =====
+function checkMobile() {
+  if (window.innerWidth < 640) {
+    document.querySelectorAll('.form-actions').forEach(el => {
+      el.style.position = 'sticky';
+      el.style.bottom = '0';
+      el.style.background = 'white';
+      el.style.margin = '0 -20px -20px';
+      el.style.padding = '12px 20px';
+      el.style.borderTop = '1px solid var(--c-border)';
+      el.style.zIndex = '10';
+    });
+  }
+}
+checkMobile();
+window.addEventListener('resize', checkMobile);
+
+// ===== INIT: update badges on load =====
+updateNavBadges();
+
+// ===== PRINT / EXPORT (PDF-ready print styles injection) =====
+function printCurrentForm() {
+  window.print();
+}
+
+// ===== NG PARETO: live update when new entries added =====
+function updateNgPareto() {
+  const entries = document.querySelectorAll('.ng-entry');
+  const defectCounts = {};
+  entries.forEach(entry => {
+    const sel = entry.querySelector('select');
+    const qtyInput = entry.querySelector('input[type=number]');
+    if (sel && qtyInput) {
+      const defect = sel.value;
+      const qty = parseInt(qtyInput.value) || 0;
+      if (defect && defect !== '– Pilih –' && qty > 0) {
+        defectCounts[defect] = (defectCounts[defect] || 0) + qty;
+      }
+    }
+  });
+
+  const sorted = Object.entries(defectCounts).sort((a,b) => b[1]-a[1]).slice(0,5);
+  const total = sorted.reduce((s,[,v])=>s+v, 0);
+  const pareto = document.getElementById('ng-pareto');
+  if (pareto && sorted.length > 0) {
+    const colors = ['var(--c-red)','var(--c-amber)','var(--c-accent)','var(--c-green)','#7C3AED'];
+    const bgColors = ['var(--c-red-bg)','var(--c-amber-bg)','var(--c-blue-bg)','var(--c-green-bg)','#F5F3FF'];
+    pareto.innerHTML = sorted.map(([name, count], i) => `
+      <div style="display:flex;align-items:center;gap:10px;">
+        <div style="font-size:12px;color:var(--c-text2);width:160px;flex-shrink:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${name}</div>
+        <div style="flex:1;height:8px;background:var(--c-bg);border-radius:99px;overflow:hidden;">
+          <div style="width:${total>0?(count/total*100):0}%;height:100%;background:${colors[i]};border-radius:99px;transition:width 0.6s ease;"></div>
+        </div>
+        <span style="font-family:var(--font-mono);font-size:12px;font-weight:600;color:${colors[i]};width:30px;text-align:right;">${count}</span>
+      </div>
+    `).join('');
+  }
+}
+
+document.addEventListener('change', function(e) {
+  if (e.target.closest('.ng-entry')) updateNgPareto();
+});
+document.addEventListener('input', function(e) {
+  if (e.target.closest('.ng-entry')) updateNgPareto();
+});
+
+// ===== SUMMARY: Sync actual data to summary tab =====
+function syncSummaryData() {
+  let totalOut = 0, totalNg = 0, totalDt = 0;
+  hourlyData.forEach((row, i) => {
+    if (row.note === 'ISTIRAHAT') return;
+    // read from live table inputs
+    const rows = document.querySelectorAll('#hourly-tbody tr');
+    if (rows[i]) {
+      const inputs = rows[i].querySelectorAll('.hour-input');
+      totalOut += parseInt(inputs[0]?.value) || 0;
+      totalNg += parseInt(inputs[1]?.value) || 0;
+      totalDt += parseInt(inputs[2]?.value) || 0;
+    }
+  });
+  // Update summary display when switching to summary tab
+}
+
+// Override switchLeaderTab to sync summary
+const _origSwitch = switchLeaderTab;
+switchLeaderTab = function(tab) {
+  _origSwitch(tab);
+  if (tab === 'summary') syncSummaryData();
+};
+
+// ===== INPUT MASKS: Auto-uppercase kode fields =====
+document.querySelectorAll('.form-input-mono').forEach(input => {
+  if (input.placeholder && input.placeholder.match(/^[A-Z]/)) {
+    input.addEventListener('input', function() {
+      const pos = this.selectionStart;
+      this.value = this.value.toUpperCase();
+      this.setSelectionRange(pos, pos);
+    });
+  }
+});
+
+// ===== CYCLE TIME TO TARGET SUGGESTION =====
+function suggestTarget(cycleTimeSec) {
+  if (!cycleTimeSec || cycleTimeSec <= 0) return;
+  const effectiveMinPerShift = 420; // 7 jam
+  const targetPerShift = Math.floor((effectiveMinPerShift * 60) / cycleTimeSec);
+  const targetPerHour = Math.floor(3600 / cycleTimeSec);
+  return { perShift: targetPerShift, perHour: targetPerHour };
+}
+
+// Auto-suggest for product form
+document.addEventListener('input', function(e) {
+  const panel = document.getElementById('tab-product');
+  if (!panel || !panel.contains(e.target)) return;
+  const allNums = panel.querySelectorAll('input[type=number]');
+  if (allNums[0] && e.target === allNums[0]) {
+    const ct = parseInt(allNums[0].value);
+    const sugg = suggestTarget(ct);
+    if (sugg && allNums[1]) {
+      allNums[1].placeholder = sugg.perShift + ' (saran)';
+    }
+  }
+});
+
+// ===== INIT COMPLETE MESSAGE =====
+setTimeout(() => {
+  showToast('📋 Production Forms System siap digunakan', 'info');
+}, 800);
+</script>
+
+<style>
+/* ===== ADDITIONAL STYLES FOR COMPLETIONS ===== */
+
+/* Sticky form actions on mobile */
+@media (max-width: 640px) {
+  .form-actions {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    margin: 0 -20px -20px;
+    padding: 12px 20px;
+    border-top: 1px solid var(--c-border);
+    z-index: 10;
+  }
+  .step-nav { flex-direction: column; }
+  .step-item { border-right: none; border-bottom: 1px solid var(--c-border); }
+  .header-inner { height: auto; padding: 12px 0; }
+  .role-switcher-inner { gap: 8px; }
+}
+
+/* Print styles */
+@media print {
+  .header, .role-switcher, .sub-nav, .form-actions, .toast-wrap { display: none !important; }
+  .page { display: block !important; }
+  .sub-panel { display: block !important; }
+  .card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
+  body { background: white; }
+}
+
+/* Focus improvements */
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  border-color: var(--c-accent) !important;
+  background: white !important;
+  box-shadow: 0 0 0 3px rgba(26,110,250,0.1) !important;
+}
+
+/* NG Entry color coding */
+.ng-entry { transition: all 0.3s ease; }
+.ng-entry:hover { border-color: var(--c-amber); box-shadow: var(--shadow-sm); }
+
+/* DT Entry color coding */
+.dt-entry { transition: all 0.3s ease; }
+.dt-entry:hover { border-color: var(--c-red); box-shadow: var(--shadow-sm); }
+
+/* Toggle selected color variants */
+.toggle-opt.selected-red {
+  border-color: var(--c-red) !important;
+  color: var(--c-red-text) !important;
+  background: var(--c-red-bg) !important;
+  font-weight: 600;
+}
+
+/* Animated progress bar */
+.progress-fill { transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+
+/* Nav badge counter */
+.nav-badge-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px; height: 18px;
+  background: var(--c-red);
+  color: white;
+  border-radius: 99px;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 0 5px;
+  margin-left: 5px;
+  animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Hourly input number centering */
+input[type=number].hour-input::-webkit-inner-spin-button,
+input[type=number].hour-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+/* Skill selector hover effect */
+.sk-btn:hover { background: #EFF6FF !important; border-color: var(--c-accent) !important; color: var(--c-accent) !important; }
+
+/* Card entrance animation */
+.card { animation: fadeUp 0.35s ease both; }
+
+/* Sub panel stagger */
+.sub-panel.active .card:nth-child(1) { animation-delay: 0.05s; }
+.sub-panel.active .card:nth-child(2) { animation-delay: 0.1s; }
+
+/* Scrollable table wrapper */
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.table-scroll::-webkit-scrollbar { height: 4px; }
+.table-scroll::-webkit-scrollbar-track { background: var(--c-bg); }
+.table-scroll::-webkit-scrollbar-thumb { background: var(--c-border2); border-radius: 99px; }
+
+/* Form field focus ring for accessibility */
+input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible {
+  outline: 2px solid var(--c-accent);
+  outline-offset: 2px;
+}
+
+/* Required field indicator pulse when empty */
+.form-input[required]:invalid:not(:placeholder-shown) {
+  border-color: var(--c-red);
+}
+
+/* Step nav connector line on active */
+.step-item.active::after {
+  content: '';
+  position: absolute;
+  right: 0; top: 50%; transform: translateY(-50%);
+  width: 0; height: 0;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid var(--c-blue-bg);
+  z-index: 2;
+}
+
+/* Downtime duration warning glow */
+input[style*="var(--c-red)"] { animation: pulseRed 2s ease infinite; }
+@keyframes pulseRed {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(239,68,68,0.08); }
+  50% { box-shadow: 0 0 0 6px rgba(239,68,68,0.15); }
+}
+
+/* Summary tab: metric animation */
+#tab-summary .metric-value,
+#tab-summary .summary-val { transition: all 0.5s ease; }
+
+/* Table form row highlight on hover */
+.table-form tbody tr:hover { background: #F8FAFF !important; }
+
+/* Hero icon bounce on load */
+.hero-icon { animation: heroEntrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) both; }
+@keyframes heroEntrance {
+  from { transform: scale(0.5) rotate(-20deg); opacity: 0; }
+  to { transform: scale(1) rotate(0); opacity: 1; }
+}
+
+/* Inline number input hide spinners globally */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button { opacity: 0; }
+input[type=number]:hover::-webkit-inner-spin-button,
+input[type=number]:hover::-webkit-outer-spin-button { opacity: 1; }
+</style>
+
+</body>
+</html>

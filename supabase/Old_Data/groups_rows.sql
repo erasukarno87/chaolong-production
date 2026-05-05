@@ -1,0 +1,1 @@
+INSERT INTO "public"."groups" ("id", "line_id", "code", "sort_order", "active", "created_at") VALUES ('5e70d38e-4c49-42c7-ab7d-d2e53ccc6966', '63f05394-78b9-4658-8168-38f29467047a', 'Group A', 10, true, '2026-05-01 11:43:48.702165+00'), ('d7ecc75b-1212-4413-a82c-28a2e535dd97', '717bbf50-d06b-498a-8956-5c1aad37fa55', 'Group A', 10, true, '2026-05-01 11:44:02.363136+00');
